@@ -1,0 +1,51 @@
+<button (click)="show()">show shit</button>
+
+<div *ngIf="eije">sjaakie</div>
+
+<img *ngIf="eije" src="https://scontent-amt2-1.cdninstagram.com/v/t51.2885-15/e35/98328350_251466166080945_6782851241798991565_n.jpg?_nc_ht=scontent-amt2-1.cdninstagram.com&_nc_cat=109&_nc_ohc=PlOswB-VL_8AX_kHGnv&oh=794737573cbf5e3a791397e2be16ac24&oe=5F3A32F1" />
+
+
+<div class="container-fluid">
+    <div class="wrapper">
+      <h4 class="h4-supermarket-page text-center">Test yo</h4>
+
+      <!--<div class="form-group">-->
+        <!--<select class="form-control" name="status" [(ngModel)]="category.status">-->
+          <!--<option [value]="1" [selected]="category.status ==1">Omce</option>-->
+          <!--<option [value]="0" [selected]="category.status ==0">Serch</option>-->
+        <!--</select>-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<select class="form-control" [(ngModel)]="tag">-->
+          <!--<option [ngValue]="Omce">Omce</option>-->
+          <!--<option [ngValue]="Serch">Serch</option>-->
+        <!--</select>-->
+      <!--</div>-->
+
+      <select [(ngModel)]="tag">
+        <option *ngFor="let c of countries" [ngValue]="c.name">{{c.name}}</option>
+      </select>
+
+      <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-2"></div>
+        <div class="col-sm-10 col-md-10 col-lg-8">
+
+          <div *ngFor="let pic of pics" class="col-sm-6 col-md-4">
+            <div class="main-headline">
+              <div>
+                <a class="hidden-xs" href="">
+                  <img class="fixed-height-image" src={{pic}} />
+                </a>
+              </div>
+              <small class="hidden-xs" style="color: rgb(80, 80, 80)">hallo</small>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+
+</div>
