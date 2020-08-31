@@ -3,11 +3,9 @@
       <div class="row">
         <div class="col-sm-5"></div>
         <div class="col-sm-2">
-          <center>
-            <select class="form-control" [(ngModel)]="tagToFilter" (change)="filterPics()">
-              <option *ngFor="let t of tags" [ngValue]="t.tagName">{{t.tagName}}</option>
-            </select>
-          </center>
+          <select class="form-control" [(ngModel)]="tagToFilter" (change)="filterPics()">
+            <option *ngFor="let t of tags" [ngValue]="t.tagName">{{t.tagName}}</option>
+          </select>
         </div>
         <div class="col-sm-5"></div>
       </div>
@@ -17,19 +15,17 @@
         <div class="col-sm-10">
 
           <div *ngFor="let pic of picsToShow" class="col-xs-4 col-sm-6 col-md-4">
-            <center>
-              <div class="main-headline">
-                <div>
-                  <a class="hidden-xs" href="">
-                    <img class="fixed-height-image" src={{pic}} />
-                  </a>
-                  <a class="visible-xs" href="">
-                    <img class="fixed-height-image-xs" src={{pic}} />
-                  </a>
-                </div>
-                <small class="hidden-xs" style="color: rgb(80, 80, 80)">hallo</small>
+            <div class="main-headline">
+              <div>
+                <a class="hidden-xs" href="">
+                  <img class="fixed-height-image" src={{pic}} />
+                </a>
+                <a class="visible-xs" href="">
+                  <img class="fixed-height-image-xs" src={{pic}} />
+                </a>
               </div>
-            </center>
+              <small class="hidden-xs" style="color: rgb(80, 80, 80)">hallo</small>
+            </div>
           </div>
 
         </div>
