@@ -267,3 +267,17 @@ h4 {
     opacity: 1;
     font-size: 37px;
 }
+
+#select-tag-dropdown {
+  width: 140px;
+}
+
+.centered-image {
+    display:block;
+    margin:auto;
+}
+
+#top-dropdown-menu {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}

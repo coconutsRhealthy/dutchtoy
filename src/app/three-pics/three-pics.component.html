@@ -1,13 +1,19 @@
 <div class="container-fluid">
     <div class="wrapper">
       <div class="row">
-        <div class="col-sm-5"></div>
-        <div class="col-sm-2">
-          <select class="form-control" [(ngModel)]="tagToFilter" (change)="filterPics()">
-            <option *ngFor="let t of tags" [ngValue]="t.tagName">{{t.tagName}}</option>
-          </select>
+        <div id="top-dropdown-menu" class="col-sm-12 text-center">
+          <div class="btn-group" dropdown>
+            <button id="select-tag-dropdown" dropdownToggle class="btn btn-primary dropdown-toggle">
+              {{dropdownSelectedValue}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let t of tags" [ngValue]="t.tagName">
+                <a (click)="filterPics(t.tagName)" class="dropdown-item" href="#">{{t.tagName}}</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-sm-5"></div>
       </div>
 
       <div class="row">
@@ -17,14 +23,13 @@
           <div *ngFor="let pic of picsToShow" class="col-xs-4 col-sm-6 col-md-4">
             <div class="main-headline">
               <div>
-                <a class="hidden-xs" href="">
-                  <img class="fixed-height-image" src={{pic}} />
+                <a class="hidden-xs" href="#">
+                  <img class="centered-image fixed-height-image" src={{pic}} />
                 </a>
-                <a class="visible-xs" href="">
-                  <img class="fixed-height-image-xs" src={{pic}} />
+                <a class="visible-xs" href="#">
+                  <img class="centered-image fixed-height-image-xs" src={{pic}} />
                 </a>
               </div>
-              <small class="hidden-xs" style="color: rgb(80, 80, 80)">hallo</small>
             </div>
           </div>
 

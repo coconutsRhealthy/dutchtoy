@@ -10,6 +10,8 @@ export class ThreePicsComponent implements OnInit {
   picsToShow = [];
   tagToFilter = null;
 
+  dropdownSelectedValue = "Choose tag";
+
   tags = [
      {id: 1, tagName: "Jake"},
      {id: 2, tagName: "Defs"},
@@ -22,6 +24,34 @@ export class ThreePicsComponent implements OnInit {
      {id: 3, tagName: "Gast"},
      {id: 3, tagName: "LD"}
   ];
+
+
+  constructor() {
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  filterPics(tagToFilter) {
+    this.dropdownSelectedValue = tagToFilter;
+    this.tagToFilter = tagToFilter;
+    this.picsToShow = [];
+    var counter = 0;
+
+    for (var i = 0; i < this.allPicsData.length; i++) {
+      var a = this.tagToFilter;
+      var b = this.allPicsData[i].tag.split(" ");
+
+      for(var z = 0; z < b.length; z++) {
+          if(a === b[z]) {
+            this.picsToShow[counter] = this.allPicsData[i].url;
+            counter++;
+          }
+      }
+    }
+  }
 
     allPicsData = [
       {
@@ -1337,34 +1367,4 @@ export class ThreePicsComponent implements OnInit {
       "tag": "Une"
       }
     ]
-
-
-
-
-
-
-  constructor() {
-
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  filterPics() {
-    this.picsToShow = [];
-    var counter = 0;
-
-    for (var i = 0; i < this.allPicsData.length; i++) {
-      var a = this.tagToFilter;
-      var b = this.allPicsData[i].tag.split(" ");
-
-      for(var z = 0; z < b.length; z++) {
-          if(a === b[z]) {
-            this.picsToShow[counter] = this.allPicsData[i].url;
-            counter++;
-          }
-      }
-    }
-  }
 }
