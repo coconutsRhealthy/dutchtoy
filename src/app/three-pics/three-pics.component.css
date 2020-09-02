@@ -281,3 +281,22 @@ h4 {
   margin-top: 2%;
   margin-bottom: 2%;
 }
+
+h1 {
+  font-weight: 200;
+  margin-top: 1.5%;
+}
+
+#footer-insta-button-initial {
+  margin-top: 35%;
+}
+
+#footer-insta-button-expanded {
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+#insta-icon {
+  font-size:24px;
+  color: #333;
+}
