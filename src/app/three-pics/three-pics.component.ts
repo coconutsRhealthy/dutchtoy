@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Lightbox } from 'ngx-lightbox';
 
 @Component({
   selector: 'app-three-pics',
@@ -12,6 +13,8 @@ export class ThreePicsComponent implements OnInit {
   instaFooterCssClass = "footer-insta-button-initial";
 
   dropdownSelectedValue = "Choose tag";
+
+  _albums = [];
 
   tags = [
      {id: 1, tagName: "Jake"},
@@ -27,13 +30,34 @@ export class ThreePicsComponent implements OnInit {
   ];
 
 
-  constructor() {
+  constructor(private _lightbox: Lightbox) {
+    for (let i = 1; i <= 4; i++) {
+      const src = 'https://www.instagram.com/p/CDeUFmWpkZf/media/?size=l';
+      const caption = 'Image ' + i + ' caption here';
+      const thumb = 'demo/img/image' + i + '-thumb.jpg';
+      const album = {
+         src: src,
+         caption: caption,
+         thumb: thumb
+      };
 
+      this._albums.push(album);
+    }
   }
 
   ngOnInit(): void {
 
   }
+
+    open(index: number): void {
+      // open lightbox
+      this._lightbox.open(this._albums, index);
+    }
+
+    close(): void {
+      // close lightbox programmatically
+      this._lightbox.close();
+    }
 
   filterPics(tagToFilter) {
     this.instaFooterCssClass = "footer-insta-button-expanded";

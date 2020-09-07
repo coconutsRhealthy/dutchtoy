@@ -6,6 +6,10 @@
         </div>
       </div>
 
+      <div *ngFor="let image of _albums; let i=index">
+        <img [src]="image.thumb" (click)="open(i)" />
+      </div>
+
       <div class="row">
         <div id="top-dropdown-menu" class="col-sm-12 text-center">
           <div class="btn-group" dropdown>
