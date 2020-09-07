@@ -6,10 +6,6 @@
         </div>
       </div>
 
-      <div *ngFor="let image of _albums; let i=index">
-        <img [src]="image.thumb" (click)="open(i)" />
-      </div>
-
       <div class="row">
         <div id="top-dropdown-menu" class="col-sm-12 text-center">
           <div class="btn-group" dropdown>
@@ -30,14 +26,11 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
 
-          <div *ngFor="let pic of picsToShow" class="col-xs-4 col-sm-6 col-md-4">
+          <div *ngFor="let image of picsToShow; let i=index" class="col-xs-4 col-sm-6 col-md-4">
             <div class="main-headline">
               <div>
-                <a class="hidden-xs" href="#">
-                  <img class="centered-image fixed-height-image" src={{pic}} />
-                </a>
-                <a class="visible-xs" href="#">
-                  <img class="centered-image fixed-height-image-xs" src={{pic}} />
+                <a href="#">
+                  <img class="centered-image fixed-height-image" [src]="image.thumb" (click)="open(i)" />
                 </a>
               </div>
             </div>

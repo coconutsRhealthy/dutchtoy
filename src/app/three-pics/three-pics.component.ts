@@ -14,8 +14,6 @@ export class ThreePicsComponent implements OnInit {
 
   dropdownSelectedValue = "Choose tag";
 
-  _albums = [];
-
   tags = [
      {id: 1, tagName: "Jake"},
      {id: 2, tagName: "Defs"},
@@ -31,33 +29,20 @@ export class ThreePicsComponent implements OnInit {
 
 
   constructor(private _lightbox: Lightbox) {
-    for (let i = 1; i <= 4; i++) {
-      const src = 'https://www.instagram.com/p/CDeUFmWpkZf/media/?size=l';
-      const caption = 'Image ' + i + ' caption here';
-      const thumb = 'demo/img/image' + i + '-thumb.jpg';
-      const album = {
-         src: src,
-         caption: caption,
-         thumb: thumb
-      };
 
-      this._albums.push(album);
-    }
   }
 
   ngOnInit(): void {
 
   }
 
-    open(index: number): void {
-      // open lightbox
-      this._lightbox.open(this._albums, index);
-    }
+  open(index: number): void {
+    this._lightbox.open(this.picsToShow, index);
+  }
 
-    close(): void {
-      // close lightbox programmatically
-      this._lightbox.close();
-    }
+  close(): void {
+    this._lightbox.close();
+  }
 
   filterPics(tagToFilter) {
     this.instaFooterCssClass = "footer-insta-button-expanded";
@@ -71,10 +56,19 @@ export class ThreePicsComponent implements OnInit {
       var b = this.allPicsData[i].tag.split(" ");
 
       for(var z = 0; z < b.length; z++) {
-          if(a === b[z]) {
-            this.picsToShow[counter] = this.allPicsData[i].url;
-            counter++;
-          }
+        if(a === b[z]) {
+          const src = this.allPicsData[i].url;
+          const caption = '';
+          const thumb = this.allPicsData[i].url;
+          const picData = {
+             src: src,
+             caption: caption,
+             thumb: thumb
+          };
+
+          this.picsToShow.push(picData);
+          counter++;
+        }
       }
     }
   }
