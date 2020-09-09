@@ -57,8 +57,9 @@ export class ThreePicsComponent implements OnInit {
 
       for(var z = 0; z < b.length; z++) {
         if(a === b[z]) {
+          var instaLinkUrl = this.allPicsData[i].url.substring(0, this.allPicsData[i].url.indexOf("media"));
           const src = this.allPicsData[i].url;
-          const caption = '';
+          const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
           const thumb = this.allPicsData[i].url;
           const picData = {
              src: src,

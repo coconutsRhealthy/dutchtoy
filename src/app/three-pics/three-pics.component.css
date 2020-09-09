@@ -38,7 +38,11 @@ h4 {
 }
 
 .main-headline {
-    padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.main-headline-xs {
+  margin-bottom: 3%;
 }
 
 #outer {
