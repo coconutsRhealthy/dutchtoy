@@ -33,14 +33,23 @@ export class ThreePicsComponent implements OnInit {
 
   filterPics(tagToFilter) {
     this.instaFooterCssClass = "footer-insta-button-expanded";
-    this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
+
+    if(tagToFilter !== "Other") {
+      this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
+    } else {
+      this.dropdownSelectedValue = tagToFilter;
+    }
+
     this.tagToFilter = tagToFilter;
     this.picsToShow = [];
     var counter = 0;
 
     for (var i = 0; i < this.allPicsData.length; i++) {
       var a = this.tagToFilter;
-      a = a.substring(0, a.indexOf(" "));
+
+      if(a !== "Other") {
+        a = a.substring(0, a.indexOf(" "));
+      }
 
       var b = this.allPicsData[i].tag.split(" ");
 
@@ -1191,7 +1200,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B4AfbbfpRGf/media/?size=l",
-      "tag": "Imps"
+      "tag": "Imp"
       },
       {
       "url": "https://www.instagram.com/p/B396m83p05i/media/?size=l",
@@ -1417,18 +1426,16 @@ export class ThreePicsComponent implements OnInit {
       var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort());
 
       var toReturn = [];
-      var otherCounter = 0;
 
       for (var [key, value] of sortedTagNumberOccurrencesMap.entries()) {
         if(value > 1) {
           toReturn.push(key + " (" + value + ") ");
         } else {
-          otherCounter++;
           this.tagsWithOneOccurrence.push(key);
         }
       }
 
-      toReturn.push("Other (" + otherCounter + ") ");
+      toReturn.push("Other");
       return toReturn;
     }   
 }
