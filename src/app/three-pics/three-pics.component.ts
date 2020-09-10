@@ -11,6 +11,7 @@ export class ThreePicsComponent implements OnInit {
   picsToShow = [];
   tagToFilter = null;
   instaFooterCssClass = "footer-insta-button-initial";
+  tagsWithOneOccurrence = [];
 
   dropdownSelectedValue = "Choose tag";
 
@@ -44,7 +45,8 @@ export class ThreePicsComponent implements OnInit {
       var b = this.allPicsData[i].tag.split(" ");
 
       for(var z = 0; z < b.length; z++) {
-        if(a === b[z]) {
+        if(a === b[z] ||
+            (a === "Other" && b.every(bElement => this.tagsWithOneOccurrence.includes(bElement)))) {
           var instaLinkUrl = this.allPicsData[i].url.substring(0, this.allPicsData[i].url.indexOf("media"));
           const src = this.allPicsData[i].url;
           const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
@@ -141,7 +143,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CDtw0Q-pIMf/media/?size=l",
-      "tag": "Benoi LD"
+      "tag": "Benoi"
       },
       {
       "url": "https://www.instagram.com/p/CDonqCspKBi/media/?size=l",
@@ -201,7 +203,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CDB_WYHHxOr/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/CC_aikLnwiE/media/?size=l",
@@ -249,11 +251,11 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CCjGuQzpLoX/media/?size=l",
-      "tag": "Verre Oosten"
+      "tag": "VerreOosten"
       },
       {
       "url": "https://www.instagram.com/p/CCgg_hjJwyl/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/CCd8RAApnjx/media/?size=l",
@@ -277,7 +279,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CCREPrGJ-ns/media/?size=l",
-      "tag": "Twice LD"
+      "tag": "Twice"
       },
       {
       "url": "https://www.instagram.com/p/CCOfbjZpfLJ/media/?size=l",
@@ -289,7 +291,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CCJV50nJjKE/media/?size=l",
-      "tag": "Benoi LD"
+      "tag": "Benoi"
       },
       {
       "url": "https://www.instagram.com/p/CCGw9ampSoO/media/?size=l",
@@ -305,7 +307,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CB_CqdBpprV/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/CB8ebCkH_Bq/media/?size=l",
@@ -313,7 +315,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CB55CvwHAgA/media/?size=l",
-      "tag": "Twice LD"
+      "tag": "Twice"
       },
       {
       "url": "https://www.instagram.com/p/CB3VkKEJNgN/media/?size=l",
@@ -369,7 +371,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CBV130jJPu7/media/?size=l",
-      "tag": "Benoi LD"
+      "tag": "Benoi"
       },
       {
       "url": "https://www.instagram.com/p/CBTRLzJJtCh/media/?size=l",
@@ -425,7 +427,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CAxy6wOHWtn/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/CAvOBadJE76/media/?size=l",
@@ -501,7 +503,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/CAA3lK2J6I_/media/?size=l",
-      "tag": "LD"
+      "tag": "Unknown1"
       },
       {
       "url": "https://www.instagram.com/p/B_-SvaCJKqy/media/?size=l",
@@ -553,7 +555,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B_fZJksJlYK/media/?size=l",
-      "tag": "Benoi LD"
+      "tag": "Benoi"
       },
       {
       "url": "https://www.instagram.com/p/B_c0hWsJkLv/media/?size=l",
@@ -625,7 +627,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B-ueHqjpcWN/media/?size=l",
-      "tag": "Twice LD"
+      "tag": "Twice"
       },
       {
       "url": "https://www.instagram.com/p/B-r5myFJz5F/media/?size=l",
@@ -657,7 +659,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B-Z391QpaXc/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B-UuzJzpBJh/media/?size=l",
@@ -689,15 +691,15 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B-AOYoJphvd/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B99py3OJ2WU/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B97E-7jJtE8/media/?size=l",
-      "tag": "iraso"
+      "tag": "Iraso"
       },
       {
       "url": "https://www.instagram.com/p/B94gFbxntIW/media/?size=l",
@@ -749,11 +751,11 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B9XB90PJ9a_/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B9Uc7f7JM1U/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B9R4DkGJamH/media/?size=l",
@@ -793,7 +795,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B84IO_kpqzK/media/?size=l",
-      "tag": "Benoi LD"
+      "tag": "Benoi"
       },
       {
       "url": "https://www.instagram.com/p/B81jbUnpwMQ/media/?size=l",
@@ -801,7 +803,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B8y_IziJ5ya/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B8waQGzp5a3/media/?size=l",
@@ -853,7 +855,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B8RgHB6HC5O/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B8O8IWfJbG_/media/?size=l",
@@ -869,7 +871,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B8HM_a0JIwY/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B8CDTxXJQVn/media/?size=l",
@@ -901,7 +903,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B7tdDB8nMzo/media/?size=l",
-      "tag": "iraso"
+      "tag": "Iraso"
       },
       {
       "url": "https://www.instagram.com/p/B7q4WF2ngaA/media/?size=l",
@@ -937,11 +939,11 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B6_GxrcJgLl/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B63RbFOJ-B2/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B6qghHdJOvd/media/?size=l",
@@ -969,11 +971,11 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B6YezAjJG2V/media/?size=l",
-      "tag": "iPuls"
+      "tag": "Ipuls"
       },
       {
       "url": "https://www.instagram.com/p/B6V6Q8MpMLB/media/?size=l",
-      "tag": "Benoi LD"
+      "tag": "Benoi"
       },
       {
       "url": "https://www.instagram.com/p/B6TVOkCp-2I/media/?size=l",
@@ -997,7 +999,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B6D4doDH2Mb/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B6BTk6MHBLB/media/?size=l",
@@ -1021,7 +1023,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B5x3HCppAR1/media/?size=l",
-      "tag": "Basek Twice Evans LD"
+      "tag": "Basek Twice Evans"
       },
       {
       "url": "https://www.instagram.com/p/B5vSHYiJZij/media/?size=l",
@@ -1113,7 +1115,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B40D39sgHy4/media/?size=l",
-      "tag": "Twice Gear LD"
+      "tag": "Twice Gear"
       },
       {
       "url": "https://www.instagram.com/p/B4xfd1nAGJd/media/?size=l",
@@ -1137,7 +1139,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B4knWSHgrfZ/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B4feNbJgTSH/media/?size=l",
@@ -1173,11 +1175,11 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B4K3a98gqBp/media/?size=l",
-      "tag": "iraso"
+      "tag": "Iraso"
       },
       {
       "url": "https://www.instagram.com/p/B4ISn1zgKP9/media/?size=l",
-      "tag": "Twice LD"
+      "tag": "Twice"
       },
       {
       "url": "https://www.instagram.com/p/B4FnjFBAro4/media/?size=l",
@@ -1229,7 +1231,7 @@ export class ThreePicsComponent implements OnInit {
       },
       {
       "url": "https://www.instagram.com/p/B3hjvFPgljI/media/?size=l",
-      "tag": "Gear LD"
+      "tag": "Gear"
       },
       {
       "url": "https://www.instagram.com/p/B3fAR_SAUBf/media/?size=l",
@@ -1422,6 +1424,7 @@ export class ThreePicsComponent implements OnInit {
           toReturn.push(key + " (" + value + ") ");
         } else {
           otherCounter++;
+          this.tagsWithOneOccurrence.push(key);
         }
       }
 
