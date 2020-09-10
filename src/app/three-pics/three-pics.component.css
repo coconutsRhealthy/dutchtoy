@@ -304,3 +304,8 @@ h1 {
   font-size:24px;
   color: #333;
 }
+
+.dropdown-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}

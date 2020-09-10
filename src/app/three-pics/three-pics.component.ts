@@ -14,20 +14,6 @@ export class ThreePicsComponent implements OnInit {
 
   dropdownSelectedValue = "Choose tag";
 
-  tags = [
-     {id: 1, tagName: "Jake"},
-     {id: 2, tagName: "Defs"},
-     {id: 3, tagName: "Same"},
-     {id: 3, tagName: "Pak"},
-     {id: 3, tagName: "Farao"},
-     {id: 3, tagName: "Fofs"},
-     {id: 3, tagName: "Nuke"},
-     {id: 3, tagName: "iPuls"},
-     {id: 3, tagName: "Gast"},
-     {id: 3, tagName: "LD"}
-  ];
-
-
   constructor(private _lightbox: Lightbox) {
 
   }
@@ -46,13 +32,15 @@ export class ThreePicsComponent implements OnInit {
 
   filterPics(tagToFilter) {
     this.instaFooterCssClass = "footer-insta-button-expanded";
-    this.dropdownSelectedValue = tagToFilter;
+    this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
     this.tagToFilter = tagToFilter;
     this.picsToShow = [];
     var counter = 0;
 
     for (var i = 0; i < this.allPicsData.length; i++) {
       var a = this.tagToFilter;
+      a = a.substring(0, a.indexOf(" "));
+
       var b = this.allPicsData[i].tag.split(" ");
 
       for(var z = 0; z < b.length; z++) {
@@ -1388,4 +1376,56 @@ export class ThreePicsComponent implements OnInit {
       "tag": "Une"
       }
     ]
+
+    ///////
+    tags = this.fillTagsDropdown();   
+
+    fillTagsDropdown() { 
+      var allTagsIncludingDuplicates = [];  
+
+      for (var a = 0; a < this.allPicsData.length; a++) { 
+        var tagsForPhoto = this.allPicsData[a].tag.split(" ");  
+
+        for (var b = 0; b < tagsForPhoto.length; b++) { 
+           allTagsIncludingDuplicates.push(tagsForPhoto[b]); 
+        }
+      }  
+
+      var allUniqueTags = Array.from(new Set(allTagsIncludingDuplicates));       
+
+      var tagNumberOccurrencesMap = new Map();
+
+      for (var c = 0; c < allUniqueTags.length; c++) { 
+        var counter = 0;
+
+        for (var d = 0; d < this.allPicsData.length; d++) { 
+          var tagsForPhoto = this.allPicsData[d].tag.split(" ");  
+
+          for (var e = 0; e < tagsForPhoto.length; e++) { 
+             if(allUniqueTags[c] === tagsForPhoto[e]) {
+                counter++;
+             }
+          }
+        }
+
+        tagNumberOccurrencesMap.set(allUniqueTags[c], counter);
+      }
+
+      //var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort((a, b) => b[1] - a[1]));
+      var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort());
+
+      var toReturn = [];
+      var otherCounter = 0;
+
+      for (var [key, value] of sortedTagNumberOccurrencesMap.entries()) {
+        if(value > 1) {
+          toReturn.push(key + " (" + value + ") ");
+        } else {
+          otherCounter++;
+        }
+      }
+
+      toReturn.push("Other (" + otherCounter + ") ");
+      return toReturn;
+    }   
 }

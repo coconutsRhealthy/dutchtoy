@@ -14,8 +14,8 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-              <li *ngFor="let t of tags" [ngValue]="t.tagName">
-                <a (click)="filterPics(t.tagName)" class="dropdown-item" href="#">{{t.tagName}}</a>
+              <li *ngFor="let tag of tags" [ngValue]="tag">
+                <a (click)="filterPics(tag)" class="dropdown-item" href="#">{{tag}}</a>
               </li>
             </ul>
           </div>
