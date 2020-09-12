@@ -9,6 +9,7 @@ import { Lightbox } from 'ngx-lightbox';
 export class ThreePicsComponent implements OnInit {
 
   picsToShow = [];
+  picsToShowInfScroll = [];
   tagToFilter = null;
   instaFooterCssClass = "footer-insta-button-initial";
   tagsWithOneOccurrence = [];
@@ -24,7 +25,22 @@ export class ThreePicsComponent implements OnInit {
   }
 
   onScroll() {
-    console.log("scrolled!");
+    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+        console.log("scrolled!");
+        var initial = this.picsToShowInfScroll.length;
+        var diffInSize = this.picsToShow.length - initial;
+        var maxLimit;
+
+        if(diffInSize < 9) {
+          maxLimit = diffInSize;
+        } else {
+          maxLimit = 9;
+        }
+
+        for(var i = initial; i < initial + maxLimit; i++) {
+          this.picsToShowInfScroll.push(this.picsToShow[i]);
+        }
+    }
   }
 
   open(index: number): void {
@@ -46,6 +62,7 @@ export class ThreePicsComponent implements OnInit {
 
     this.tagToFilter = tagToFilter;
     this.picsToShow = [];
+    this.picsToShowInfScroll = [];
     var counter = 0;
 
     for (var i = 0; i < this.allPicsData.length; i++) {
@@ -69,6 +86,10 @@ export class ThreePicsComponent implements OnInit {
              caption: caption,
              thumb: thumb
           };
+
+          if(this.picsToShowInfScroll.length < 14) {
+            this.picsToShowInfScroll.push(picData);
+          }
 
           this.picsToShow.push(picData);
           counter++;
