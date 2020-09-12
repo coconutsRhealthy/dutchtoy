@@ -87,7 +87,7 @@ export class ThreePicsComponent implements OnInit {
              thumb: thumb
           };
 
-          if(this.picsToShowInfScroll.length < 14) {
+          if(this.picsToShowInfScroll.length < 15) {
             this.picsToShowInfScroll.push(picData);
           }
 
