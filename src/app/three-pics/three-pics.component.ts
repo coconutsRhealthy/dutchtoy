@@ -23,6 +23,10 @@ export class ThreePicsComponent implements OnInit {
 
   }
 
+  onScroll() {
+    console.log("scrolled!");
+  }
+
   open(index: number): void {
     this._lightbox.open(this.picsToShow, index);
   }

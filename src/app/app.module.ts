@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { LightboxModule } from 'ngx-lightbox';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { EijeComponent } from './eije/eije.component';
@@ -20,7 +21,8 @@ import { ThreePicsComponent } from './three-pics/three-pics.component';
     FormsModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    LightboxModule
+    LightboxModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]
