@@ -1,56 +1,54 @@
 <div class="container-fluid">
-    <div class="wrapper">
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <h1>dutchtoy</h1>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1>dutchtoy</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="top-dropdown-menu" class="col-sm-12 text-center">
+        <div class="btn-group" dropdown>
+          <button id="select-tag-dropdown" dropdownToggle class="btn btn-primary dropdown-toggle">
+            {{dropdownSelectedValue}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let tag of tags" [ngValue]="tag">
+              <a (click)="filterPics(tag)" class="dropdown-item" href="#">{{tag}}</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div id="top-dropdown-menu" class="col-sm-12 text-center">
-          <div class="btn-group" dropdown>
-            <button id="select-tag-dropdown" dropdownToggle class="btn btn-primary dropdown-toggle">
-              {{dropdownSelectedValue}}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li *ngFor="let tag of tags" [ngValue]="tag">
-                <a (click)="filterPics(tag)" class="dropdown-item" href="#">{{tag}}</a>
-              </li>
-            </ul>
+    <div infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         (scrolled)="onScroll()" class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-xs-4 col-sm-6 col-md-4">
+          <div class="hidden-xs margin-picture-large">
+            <a class="hidden-xs" href="#">
+              <img class="centered-image fixed-height-image" [src]="image.thumb" (click)="open(i)" />
+            </a>
+          </div>
+          <div class="visible-xs margin-picture-small">
+            <a class="visible-xs" href="#">
+              <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" />
+            </a>
           </div>
         </div>
+
       </div>
+      <div class="col-sm-1"></div>
+    </div>
 
-      <div infiniteScroll
-           [infiniteScrollDistance]="2"
-           [infiniteScrollThrottle]="50"
-           (scrolled)="onScroll()" class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-          <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-xs-4 col-sm-6 col-md-4">
-            <div class="hidden-xs main-headline">
-              <a class="hidden-xs" href="#">
-                <img class="centered-image fixed-height-image" [src]="image.thumb" (click)="open(i)" />
-              </a>
-            </div>
-            <div class="visible-xs main-headline-xs">
-              <a class="visible-xs" href="#">
-                <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" />
-              </a>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-sm-1"></div>
-      </div>
-
-      <div class="row">
-        <div id={{instaFooterCssClass}} class="col-sm-12 text-center">
-          <a href="https://instagram.com/dutchtoy">
-            <i id="insta-icon" class="fa">&#xf16d;</i>
-          </a>
-        </div>
+    <div class="row">
+      <div id={{instaFooterCssClass}} class="col-sm-12 text-center">
+        <a href="https://instagram.com/dutchtoy">
+          <i id="insta-icon" class="fa">&#xf16d;</i>
+        </a>
       </div>
     </div>
 </div>
