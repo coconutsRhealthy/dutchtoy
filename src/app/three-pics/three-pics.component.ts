@@ -11,7 +11,6 @@ export class ThreePicsComponent implements OnInit {
   picsToShow = [];
   picsToShowInfScroll = [];
   tagToFilter = null;
-  instaFooterCssClass = "footer-insta-button-initial";
   tagsWithOneOccurrence = [];
 
   dropdownSelectedValue = "Choose tag";
@@ -52,8 +51,6 @@ export class ThreePicsComponent implements OnInit {
   }
 
   filterPics(tagToFilter) {
-    this.instaFooterCssClass = "footer-insta-button-expanded";
-
     if(tagToFilter !== "Other") {
       this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
     } else {
