@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="dtbody">
+  <div class="content">
     <div class="row">
       <div class="col-sm-12 text-center">
         <h1>dutchtoy</h1>
@@ -30,12 +30,12 @@
       <div class="col-sm-10">
         <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-xs-4 col-sm-6 col-md-4">
           <div class="hidden-xs margin-picture-large">
-            <a class="hidden-xs" href="#">
+            <a class="hidden-xs" href="#/">
               <img class="centered-image fixed-height-image" [src]="image.thumb" (click)="open(i)" />
             </a>
           </div>
           <div class="visible-xs margin-picture-small">
-            <a class="visible-xs" href="#">
+            <a class="visible-xs" href="#/">
               <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" />
             </a>
           </div>
@@ -46,13 +46,11 @@
     </div>
   </div>
 
-  <div class="dtfooter">
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <a href="https://instagram.com/dutchtoy">
-          <i id="insta-icon" class="fa">&#xf16d;</i>
-        </a>
-      </div>
+  <div class="footer row">
+    <div class="col-sm-12 text-center">
+      <a href="https://instagram.com/dutchtoy">
+        <i id="insta-icon" class="fa">&#xf16d;</i>
+      </a>
     </div>
   </div>
 </div>

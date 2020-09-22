@@ -1,3 +1,11 @@
+.content {
+    min-height: calc(100vh - 55px);
+}
+
+.footer {
+  margin-bottom: 30px;
+}
+
 .margin-picture-large {
   margin-bottom: 25px;
 }
@@ -96,16 +104,4 @@ h1 {
 .dropdown-menu {
   max-height: 250px;
   overflow-y: auto;
-}
-
-.dtbody {
-  min-height: 93vh;
-  margin: 0;
-
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-.dtfooter {
-  min-height: 7vh;
 }
