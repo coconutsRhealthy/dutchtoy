@@ -9,6 +9,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
 import { EijeComponent } from './eije/eije.component';
 import { ThreePicsComponent } from './three-pics/three-pics.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ThreePicsComponent } from './three-pics/three-pics.component';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     LightboxModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
