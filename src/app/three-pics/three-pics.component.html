@@ -42,6 +42,13 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
+
+    <div class="row" [hidden]="!showManualLoadMoreButton">
+      <div class="col-sm-12 text-center">
+        <button type="button" (click)="manualTriggerOnScroll()" class="btn btn-secondary">More...</button>
+      </div>
+    </div>
+
   </div>
 
   <div class="footer row">

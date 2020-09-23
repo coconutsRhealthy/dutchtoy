@@ -15,6 +15,8 @@ export class ThreePicsComponent implements OnInit {
 
   dropdownSelectedValue = "Choose tag";
 
+  showManualLoadMoreButton = false;
+
   constructor(private _lightbox: Lightbox) {
 
   }
@@ -25,7 +27,6 @@ export class ThreePicsComponent implements OnInit {
 
   onScroll() {
     if(this.picsToShowInfScroll.length < this.picsToShow.length) {
-        console.log("scrolled!");
         var initial = this.picsToShowInfScroll.length;
         var diffInSize = this.picsToShow.length - initial;
         var maxLimit;
@@ -39,6 +40,8 @@ export class ThreePicsComponent implements OnInit {
         for(var i = initial; i < initial + maxLimit; i++) {
           this.picsToShowInfScroll.push(this.picsToShow[i]);
         }
+    } else {
+        this.showManualLoadMoreButton = false;
     }
   }
 
@@ -92,6 +95,10 @@ export class ThreePicsComponent implements OnInit {
           counter++;
         }
       }
+    }
+
+    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+      this.showManualLoadMoreButton = true;
     }
   }
 
@@ -1460,4 +1467,14 @@ export class ThreePicsComponent implements OnInit {
       toReturn.push("Other");
       return toReturn;
     }   
+
+    manualTriggerOnScroll() { 
+      this.onScroll();
+
+      if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+        this.showManualLoadMoreButton = true;
+      } else {
+        this.showManualLoadMoreButton = false;
+      }
+    }
 }
