@@ -12,13 +12,13 @@ export class ThreePicsComponent implements OnInit {
   picsToShowInfScroll = [];
   tagToFilter = null;
   tagsWithOneOccurrence = [];
-
+  tags = [];   
+  premiumTags = [];
   dropdownSelectedValue = "Choose tag";
-
   showManualLoadMoreButton = false;
 
   constructor(private _lightbox: Lightbox) {
-
+    this.fillTagsDropdown();
   }
 
   ngOnInit(): void {
@@ -101,6 +101,67 @@ export class ThreePicsComponent implements OnInit {
       this.showManualLoadMoreButton = true;
     }
   }
+
+  fillTagsDropdown() { 
+    var allTagsIncludingDuplicates = [];  
+
+    for (var a = 0; a < this.allPicsData.length; a++) { 
+      var tagsForPhoto = this.allPicsData[a].tag.split(" ");  
+
+      for (var b = 0; b < tagsForPhoto.length; b++) { 
+         allTagsIncludingDuplicates.push(tagsForPhoto[b]); 
+      }
+    }  
+
+    var allUniqueTags = Array.from(new Set(allTagsIncludingDuplicates));       
+
+    var tagNumberOccurrencesMap = new Map();
+
+    for (var c = 0; c < allUniqueTags.length; c++) { 
+      var counter = 0;
+
+      for (var d = 0; d < this.allPicsData.length; d++) { 
+        var tagsForPhoto = this.allPicsData[d].tag.split(" ");  
+
+        for (var e = 0; e < tagsForPhoto.length; e++) { 
+           if(allUniqueTags[c] === tagsForPhoto[e]) {
+              counter++;
+           }
+        }
+      }
+
+      tagNumberOccurrencesMap.set(allUniqueTags[c], counter);
+    }
+
+    var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort());
+
+    for (var [key, value] of sortedTagNumberOccurrencesMap.entries()) {
+      if(key === "Defs" || key === "Same") {
+        this.premiumTags.push(key + " (" + value + ") ");
+      }
+
+      if(value > 1) {
+        this.tags.push(key + " (" + value + ") ");
+      } else {
+        this.tagsWithOneOccurrence.push(key);
+      }
+    }
+  }   
+
+  manualTriggerOnScroll() { 
+    this.onScroll();
+
+    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+      this.showManualLoadMoreButton = true;
+    } else {
+      this.showManualLoadMoreButton = false;
+    }
+  }
+
+
+  ////////////
+
+
 
     allPicsData = [
       {
@@ -1417,64 +1478,5 @@ export class ThreePicsComponent implements OnInit {
       }
     ]
 
-    ///////
-    tags = this.fillTagsDropdown();   
 
-    fillTagsDropdown() { 
-      var allTagsIncludingDuplicates = [];  
-
-      for (var a = 0; a < this.allPicsData.length; a++) { 
-        var tagsForPhoto = this.allPicsData[a].tag.split(" ");  
-
-        for (var b = 0; b < tagsForPhoto.length; b++) { 
-           allTagsIncludingDuplicates.push(tagsForPhoto[b]); 
-        }
-      }  
-
-      var allUniqueTags = Array.from(new Set(allTagsIncludingDuplicates));       
-
-      var tagNumberOccurrencesMap = new Map();
-
-      for (var c = 0; c < allUniqueTags.length; c++) { 
-        var counter = 0;
-
-        for (var d = 0; d < this.allPicsData.length; d++) { 
-          var tagsForPhoto = this.allPicsData[d].tag.split(" ");  
-
-          for (var e = 0; e < tagsForPhoto.length; e++) { 
-             if(allUniqueTags[c] === tagsForPhoto[e]) {
-                counter++;
-             }
-          }
-        }
-
-        tagNumberOccurrencesMap.set(allUniqueTags[c], counter);
-      }
-
-      //var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort((a, b) => b[1] - a[1]));
-      var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort());
-
-      var toReturn = [];
-
-      for (var [key, value] of sortedTagNumberOccurrencesMap.entries()) {
-        if(value > 1) {
-          toReturn.push(key + " (" + value + ") ");
-        } else {
-          this.tagsWithOneOccurrence.push(key);
-        }
-      }
-
-      toReturn.push("Other");
-      return toReturn;
-    }   
-
-    manualTriggerOnScroll() { 
-      this.onScroll();
-
-      if(this.picsToShowInfScroll.length < this.picsToShow.length) {
-        this.showManualLoadMoreButton = true;
-      } else {
-        this.showManualLoadMoreButton = false;
-      }
-    }
 }

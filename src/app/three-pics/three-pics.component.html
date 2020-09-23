@@ -11,6 +11,10 @@
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{dropdownSelectedValue}}</button>
           <ul ngbDropdownMenu>
+            <li *ngFor="let premiumTag of premiumTags" [ngValue]="premiumTag">
+              <a (click)="filterPics(premiumTag)" class="dropdown-item" href="#">{{premiumTag}}</a>
+            </li>
+            <div class="dropdown-divider"></div>
             <li *ngFor="let tag of tags" [ngValue]="tag">
               <a (click)="filterPics(tag)" class="dropdown-item" href="#">{{tag}}</a>
             </li>
