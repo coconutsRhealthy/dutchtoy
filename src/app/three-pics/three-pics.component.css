@@ -1,5 +1,5 @@
 .content {
-    min-height: calc(100vh - 55px);
+  min-height: calc(100vh - 100px);
 }
 
 .footer {
@@ -18,6 +18,10 @@
   object-fit: cover;
   width: 260px;
   height: 260px;
+}
+
+.fixed-height-image:hover {
+  opacity: 0.73;
 }
 
 .fixed-height-image-xs {
@@ -78,22 +82,13 @@
 }
 
 #top-dropdown-menu {
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 18px;
+  margin-bottom: 30px;
 }
 
 h1 {
   font-weight: 200;
-  margin-top: 1.5%;
-}
-
-#footer-insta-button-initial {
-  margin-top: 35%;
-}
-
-#footer-insta-button-expanded {
-  margin-top: 1%;
-  margin-bottom: 2%;
+  margin-top: 25px;
 }
 
 #insta-icon {
