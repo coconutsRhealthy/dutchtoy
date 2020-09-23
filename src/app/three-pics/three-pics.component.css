@@ -1,5 +1,6 @@
 .content {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 125px);
+  margin-bottom: 25px;
 }
 
 .footer {
@@ -97,6 +98,6 @@ h1 {
 }
 
 .dropdown-menu {
-  max-height: 250px;
+  max-height: 320px;
   overflow-y: auto;
 }
