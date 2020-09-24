@@ -146,6 +146,8 @@ export class ThreePicsComponent implements OnInit {
         this.tagsWithOneOccurrence.push(key);
       }
     }
+
+    this.tags.push("Other");
   }   
 
   manualTriggerOnScroll() { 
