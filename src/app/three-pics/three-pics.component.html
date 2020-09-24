@@ -12,11 +12,11 @@
           <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{dropdownSelectedValue}}</button>
           <ul ngbDropdownMenu>
             <li *ngFor="let premiumTag of premiumTags" [ngValue]="premiumTag">
-              <a (click)="filterPics(premiumTag)" class="dropdown-item" href="#">{{premiumTag}}</a>
+              <a (click)="filterPics(premiumTag)" class="dropdown-item" href="#{{getCorrectUrlPostfix(premiumTag)}}">{{premiumTag}}</a>
             </li>
             <div class="dropdown-divider"></div>
             <li *ngFor="let tag of tags" [ngValue]="tag">
-              <a (click)="filterPics(tag)" class="dropdown-item" href="#">{{tag}}</a>
+              <a (click)="filterPics(tag)" class="dropdown-item" href="#{{getCorrectUrlPostfix(tag)}}">{{tag}}</a>
             </li>
           </ul>
         </div>
@@ -32,12 +32,12 @@
         <div class="row">
           <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-lg-4 col-md-6 col-sm-6 col-4">
             <div class="d-none d-sm-block margin-picture-large">
-              <a href="#/">
+              <a href="#{{getCorrectUrlPostfix(tagToFilter)}}">
                 <img class="centered-image fixed-height-image" [src]="image.thumb" (click)="open(i)" />
               </a>
             </div>
             <div class="d-block d-sm-none margin-picture-small">
-              <a href="#/">
+              <a href="#{{getCorrectUrlPostfix(tagToFilter)}}">
                 <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" />
               </a>
             </div>

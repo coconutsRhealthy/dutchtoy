@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Lightbox } from 'ngx-lightbox';
 
 @Component({
@@ -18,11 +18,63 @@ export class ThreePicsComponent implements OnInit {
   showManualLoadMoreButton = false;
 
   constructor(private _lightbox: Lightbox) {
-    this.fillTagsDropdown();
+
   }
 
   ngOnInit(): void {
+    this.fillTagsDropdown();
+    this.processUrl();
+  }
 
+  @HostListener('window:hashchange', ['$event'])
+  onHashChange() {
+    this.showManualLoadMoreButton = false;
+    this.processUrl();
+  }
+
+  processUrl() {
+    var url = window.location.href;
+
+    if(url.indexOf("/") !== -1) {
+      var urlTag = url.substring(url.lastIndexOf("/") + 1, url.length);
+
+      if(urlTag.indexOf("#") !== -1) {
+        urlTag = urlTag.replace("#", "");
+        var urlTagToUpperCase = urlTag.toUpperCase();
+
+        var tagIsValid = false;
+
+        for (var i = 0; i < this.tags.length; i++) {
+          var currentTagInLoop = this.tags[i].toUpperCase();
+
+          if(currentTagInLoop.indexOf(" ") !== -1) {
+            currentTagInLoop = currentTagInLoop.substring(0, currentTagInLoop.indexOf(" "));
+          }
+
+          if(urlTagToUpperCase === currentTagInLoop) {
+            this.filterPics(this.tags[i]);
+            tagIsValid = true;
+            break;
+          }
+        }
+
+        if(!tagIsValid) {
+          window.location.href = "http://localhost:4200";
+        }
+
+        window.location.href = window.location.href.toLowerCase();
+      }
+    }
+  }
+
+  getCorrectUrlPostfix(tagPlusAmount) {
+    var correct = tagPlusAmount.toLowerCase();
+
+    if(correct.indexOf(" ") !== -1) {
+      correct = correct.substring(0, correct.indexOf(" "));
+    }
+
+    return correct;
   }
 
   onScroll() {
@@ -54,7 +106,7 @@ export class ThreePicsComponent implements OnInit {
   }
 
   filterPics(tagToFilter) {
-    if(tagToFilter !== "Other") {
+    if(tagToFilter.indexOf(" ") !== -1) {
       this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
     } else {
       this.dropdownSelectedValue = tagToFilter;
@@ -68,7 +120,7 @@ export class ThreePicsComponent implements OnInit {
     for (var i = 0; i < this.allPicsData.length; i++) {
       var a = this.tagToFilter;
 
-      if(a !== "Other") {
+      if(a.indexOf(" ") !== -1) {
         a = a.substring(0, a.indexOf(" "));
       }
 
