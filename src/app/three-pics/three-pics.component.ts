@@ -59,7 +59,8 @@ export class ThreePicsComponent implements OnInit {
         }
 
         if(!tagIsValid) {
-          window.location.href = "http://localhost:4200";
+          var currentUrl = window.location.href;
+          window.location.href = currentUrl.substring(0, currentUrl.indexOf("#") + 1);
         }
 
         window.location.href = window.location.href.toLowerCase();
@@ -199,7 +200,19 @@ export class ThreePicsComponent implements OnInit {
       }
     }
 
-    this.tags.push("Other");
+    var totalOtherPics = 0;
+
+    for (var i = 0; i < this.allPicsData.length; i++) {
+      var b = this.allPicsData[i].tag.split(" ");
+
+      for(var z = 0; z < b.length; z++) {
+        if(b.every(bElement => this.tagsWithOneOccurrence.includes(bElement))) {
+          totalOtherPics++;
+        }
+      }
+    }
+
+    this.tags.push("Other (" + totalOtherPics + ")");
   }   
 
   manualTriggerOnScroll() { 
