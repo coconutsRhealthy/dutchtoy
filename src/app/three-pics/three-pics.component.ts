@@ -60,7 +60,7 @@ export class ThreePicsComponent implements OnInit {
 
         if(!tagIsValid) {
           var currentUrl = window.location.href;
-          window.location.href = currentUrl.substring(0, currentUrl.indexOf("#") + 1);
+          window.location.href = currentUrl.substring(0, currentUrl.indexOf("#"));
         }
 
         window.location.href = window.location.href.toLowerCase();
