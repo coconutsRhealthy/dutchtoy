@@ -203,10 +203,10 @@ export class ThreePicsComponent implements OnInit {
     var totalOtherPics = 0;
 
     for (var i = 0; i < this.allPicsData.length; i++) {
-      var b = this.allPicsData[i].tag.split(" ");
+      var bbb = this.allPicsData[i].tag.split(" ");
 
-      for(var z = 0; z < b.length; z++) {
-        if(b.every(bElement => this.tagsWithOneOccurrence.includes(bElement))) {
+      for(var z = 0; z < bbb.length; z++) {
+        if(bbb.every(bElement => this.tagsWithOneOccurrence.includes(bElement))) {
           totalOtherPics++;
         }
       }
