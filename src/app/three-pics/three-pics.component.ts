@@ -38,6 +38,12 @@ export class ThreePicsComponent implements OnInit {
     if(url.indexOf("/") !== -1) {
       var urlTag = url.substring(url.lastIndexOf("/") + 1, url.length);
 
+      if(urlTag.indexOf("#") === -1) {
+        if(urlTag.slice(-1) !== "") {
+          window.location.href = window.location.href.replace(urlTag, "#" + urlTag);
+        }
+      }
+
       if(urlTag.indexOf("#") !== -1) {
         urlTag = urlTag.replace("#", "");
         var urlTagToUpperCase = urlTag.toUpperCase();
