@@ -44,6 +44,15 @@ export class ThreePicsComponent implements OnInit {
         }
       }
 
+      if(urlTag.toLowerCase().indexOf("benoi+gear") !== -1) {
+        var benoiGearArray = [];
+        benoiGearArray.push("Benoi");
+        benoiGearArray.push("Gear");
+
+        this.filterPicsMultiple(benoiGearArray);
+        return;
+      }
+
       if(urlTag.indexOf("#") !== -1) {
         urlTag = urlTag.replace("#", "");
         var urlTagToUpperCase = urlTag.toUpperCase();
@@ -161,6 +170,55 @@ export class ThreePicsComponent implements OnInit {
     }
   }
 
+  filterPicsMultiple(tagsToFilterArray) {
+    this.picsToShow = [];
+    this.picsToShowInfScroll = [];
+
+    var allTagsToFilterCombined = "";
+
+    for (var i = 0; i < tagsToFilterArray.length; i++) {
+      if(allTagsToFilterCombined === "") {
+        allTagsToFilterCombined = allTagsToFilterCombined + tagsToFilterArray[i];
+      } else {
+        allTagsToFilterCombined = allTagsToFilterCombined + " / " + tagsToFilterArray[i];
+      }
+    }
+
+    this.dropdownSelectedValue = allTagsToFilterCombined;
+
+    for(var b = 0; b < this.allPicsData.length; b++) {
+      for(var a = 0; a < tagsToFilterArray.length; a++) {
+        var c = this.allPicsData[b].tag.split(" ");
+
+        for(var d = 0; d < c.length; d++) {
+           if(tagsToFilterArray[a] === c[d]) {
+              var instaLinkUrl = this.allPicsData[b].url.substring(0, this.allPicsData[b].url.indexOf("media"));
+              const src = this.allPicsData[b].url;
+              const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
+              const thumb = this.allPicsData[b].url;
+              const picData = {
+                 src: src,
+                 caption: caption,
+                 thumb: thumb
+              };
+
+              if(this.picsToShowInfScroll.length < 15) {
+                this.picsToShowInfScroll.push(picData);
+              }
+
+              this.picsToShow.push(picData);
+           }
+        }
+      }
+    }
+
+    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+      this.showManualLoadMoreButton = true;
+    }
+
+    this.tagToFilter = "Benoi+Gear";
+  }
+
   fillTagsDropdown() { 
     var allTagsIncludingDuplicates = [];  
 
@@ -236,6 +294,34 @@ export class ThreePicsComponent implements OnInit {
 
 
   allPicsData = [
+    {
+    "url": "https://www.instagram.com/p/CFzqSo7p0Dm/media/?size=l",
+    "tag": "Defs"
+    },
+    {
+    "url": "https://www.instagram.com/p/CFxFb49JGYa/media/?size=l",
+    "tag": "Evans"
+    },
+    {
+    "url": "https://www.instagram.com/p/CFug51zJpTB/media/?size=l",
+    "tag": "Jake"
+    },
+    {
+    "url": "https://www.instagram.com/p/CFr8BUlpMTb/media/?size=l",
+    "tag": "Delta"
+    },
+    {
+    "url": "https://www.instagram.com/p/CFpXLwYJPsV/media/?size=l",
+    "tag": "Manks"
+    },
+    {
+    "url": "https://www.instagram.com/p/CFmyaHgpgD5/media/?size=l",
+    "tag": "Nuke"
+    },
+    {
+    "url": "https://www.instagram.com/p/CFkNuDxJMmr/media/?size=l",
+    "tag": "Same"
+    },
     {
     "url": "https://www.instagram.com/p/CFho1pJpd2C/media/?size=l",
     "tag": "Pabs LD RFA Gear"
