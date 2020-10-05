@@ -44,12 +44,12 @@ export class ThreePicsComponent implements OnInit {
         }
       }
 
-      if(urlTag.toLowerCase().indexOf("benoi+gear") !== -1) {
-        var benoiGearArray = [];
-        benoiGearArray.push("Benoi");
-        benoiGearArray.push("Gear");
+      if(urlTag.toLowerCase().indexOf("twice+benoi") !== -1) {
+        var twiceBenoiArray = [];
+        twiceBenoiArray.push("Twice");
+        twiceBenoiArray.push("Benoi");
 
-        this.filterPicsMultiple(benoiGearArray);
+        this.filterPicsMultiple(twiceBenoiArray);
         return;
       }
 
@@ -216,7 +216,7 @@ export class ThreePicsComponent implements OnInit {
       this.showManualLoadMoreButton = true;
     }
 
-    this.tagToFilter = "Benoi+Gear";
+    this.tagToFilter = "Twice+Benoi";
   }
 
   fillTagsDropdown() { 
