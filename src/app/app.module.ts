@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { EijeComponent } from './eije/eije.component';
 import { ThreePicsComponent } from './three-pics/three-pics.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BsDropdownModule.forRoot(),
     LightboxModule,
     InfiniteScrollModule,
-    NgbModule
+    NgbModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
