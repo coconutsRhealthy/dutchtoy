@@ -1,46 +1,37 @@
 <div class="container-fluid">
   <div class="content">
-
-    <!--Navbar-->
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
-
-      <!-- Navbar brand -->
       <mdb-navbar-brand><a class="navbar-brand" href="#">Dutchtoy</a></mdb-navbar-brand>
-
-      <!-- Collapsible content -->
       <links>
-
-        <!-- Links -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link waves-light" mdbWavesEffect>Latest<span class="sr-only">(current)</span></a>
+          <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Latest'}">
+            <a (click)="showAllPics(allPicsData); setActiveNavButton('Latest'); setH1Text('Latest')"
+               class="nav-link waves-light" mdbWavesEffect>Latest</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect>Explore</a>
+          <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Explore'}">
+            <a (click)="shufflePics(); setActiveNavButton('Explore'); setH1Text('Explore');"
+               class="nav-link waves-light" mdbWavesEffect>Explore</a>
           </li>
-
-          <li class="nav-item dropdown">
+          <li>
             <div>
-              <div ngbDropdown>
+              <div ngbDropdown class="nav-item" [ngClass]="{'active':activeNavigationButton === 'SelectTag'}">
                 <a ngbDropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-                  {{dropdownSelectedValue}}<span class="caret"></span></a>
+                  Select Tag<span class="caret"></span></a>
                 <ul ngbDropdownMenu>
                   <li *ngFor="let premiumTag of premiumTags" [ngValue]="premiumTag">
-                    <a (click)="filterPics(premiumTag)" class="dropdown-item" href="#{{getCorrectUrlPostfix(premiumTag)}}">{{premiumTag}}</a>
+                    <a (click)="filterPics(premiumTag); setActiveNavButton('SelectTag'); setH1Text(premiumTag);"
+                       class="dropdown-item" href="#{{getCorrectUrlPostfix('Tag: ' + premiumTag)}}">{{premiumTag}}</a>
                   </li>
                   <div class="dropdown-divider"></div>
                   <li *ngFor="let tag of tags" [ngValue]="tag">
-                    <a (click)="filterPics(tag)" class="dropdown-item" href="#{{getCorrectUrlPostfix(tag)}}">{{tag}}</a>
+                    <a (click)="filterPics(tag); setActiveNavButton('SelectTag'); setH1Text('Tag: ' + tag);"
+                       class="dropdown-item" href="#{{getCorrectUrlPostfix(tag)}}">{{tag}}</a>
                   </li>
                 </ul>
               </div>
             </div>
           </li>
-
         </ul>
-        <!-- Links -->
-
-
         <ul class="navbar-nav ml-auto nav-flex-icons">
           <li class="nav-item">
             <a class="nav-link">
@@ -48,17 +39,12 @@
             </a>
           </li>
         </ul>
-
       </links>
-      <!-- Collapsible content -->
-
     </mdb-navbar>
-    <!--/.Navbar-->
-
 
     <div class="row">
       <div class="col-12 text-center">
-        <h2 class="text-center">Tag: Manks</h2>
+        <h1 class="text-center">{{h1Text}}</h1>
       </div>
     </div>
 

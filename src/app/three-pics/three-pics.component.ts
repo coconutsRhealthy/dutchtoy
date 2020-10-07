@@ -14,8 +14,10 @@ export class ThreePicsComponent implements OnInit {
   tagsWithOneOccurrence = [];
   tags = [];   
   premiumTags = [];
-  dropdownSelectedValue = "Choose tag";
+  dropdownSelectedValue = "Select tag";
   showManualLoadMoreButton = false;
+  activeNavigationButton = "Latest";
+  h1Text = "Latest";
 
   constructor(private _lightbox: Lightbox) {
 
@@ -23,13 +25,29 @@ export class ThreePicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillTagsDropdown();
-    this.processUrl();
+    //this.processUrl();
+    this.showAllPics(this.allPicsData);
   }
 
   @HostListener('window:hashchange', ['$event'])
   onHashChange() {
     this.showManualLoadMoreButton = false;
-    this.processUrl();
+    //this.processUrl();
+  }
+
+  shufflePics() {
+   this.picsToShow = [];
+   this.picsToShowInfScroll = [];
+   var copiedArray = this.allPicsData.slice();
+   this.shuffleArray(copiedArray);
+   this.showAllPics(copiedArray);
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
   }
 
   processUrl() {
@@ -83,7 +101,23 @@ export class ThreePicsComponent implements OnInit {
     }
   }
 
+  setActiveNavButton(buttonClicked) {
+    this.activeNavigationButton = buttonClicked;
+  }
+
+  setH1Text(value) {
+    if(value.indexOf("(") === -1) {
+      this.h1Text = value;
+    } else {
+      this.h1Text = value.substring(0, value.indexOf("(") -1);
+    }
+  }
+
   getCorrectUrlPostfix(tagPlusAmount) {
+    if(tagPlusAmount === null) {
+      tagPlusAmount = "/";
+    }
+
     var correct = tagPlusAmount.toLowerCase();
 
     if(correct.indexOf(" ") !== -1) {
@@ -114,11 +148,38 @@ export class ThreePicsComponent implements OnInit {
   }
 
   open(index: number): void {
-    this._lightbox.open(this.picsToShow, index);
+    this._lightbox.open(this.picsToShowInfScroll, index);
   }
 
   close(): void {
     this._lightbox.close();
+  }
+
+  showAllPics(picDataToUseInMethod) {
+   this.picsToShowInfScroll = [];
+   this.picsToShow = [];
+
+   for (var i = 0; i < picDataToUseInMethod.length; i++) {
+      var instaLinkUrl = picDataToUseInMethod[i].url.substring(0, picDataToUseInMethod[i].url.indexOf("media"));
+      const src = picDataToUseInMethod[i].url;
+      const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
+      const thumb = picDataToUseInMethod[i].url;
+      const picData = {
+         src: src,
+         caption: caption,
+         thumb: thumb
+      };
+
+      if(this.picsToShowInfScroll.length < 15) {
+        this.picsToShowInfScroll.push(picData);
+      }
+
+      this.picsToShow.push(picData);
+    }
+
+    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+      this.showManualLoadMoreButton = true;
+    }
   }
 
   filterPics(tagToFilter) {
