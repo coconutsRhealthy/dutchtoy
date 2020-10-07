@@ -44,12 +44,10 @@ export class ThreePicsComponent implements OnInit {
         }
       }
 
-      if(urlTag.toLowerCase().indexOf("twice+benoi") !== -1) {
-        var twiceBenoiArray = [];
-        twiceBenoiArray.push("Twice");
-        twiceBenoiArray.push("Benoi");
-
-        this.filterPicsMultiple(twiceBenoiArray);
+      if(urlTag.toLowerCase().indexOf("riser+misc") !== -1) {
+        var riserMiscArray = [];
+        riserMiscArray.push("RiserMisc");
+        this.filterPicsMultiple(riserMiscArray);
         return;
       }
 
@@ -184,7 +182,7 @@ export class ThreePicsComponent implements OnInit {
       }
     }
 
-    this.dropdownSelectedValue = allTagsToFilterCombined;
+    this.dropdownSelectedValue = "Riser / Misc";
 
     for(var b = 0; b < this.allPicsData.length; b++) {
       for(var a = 0; a < tagsToFilterArray.length; a++) {
@@ -216,7 +214,7 @@ export class ThreePicsComponent implements OnInit {
       this.showManualLoadMoreButton = true;
     }
 
-    this.tagToFilter = "Twice+Benoi";
+    this.tagToFilter = "Riser+Misc";
   }
 
   fillTagsDropdown() { 
@@ -253,6 +251,10 @@ export class ThreePicsComponent implements OnInit {
     var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort());
 
     for (var [key, value] of sortedTagNumberOccurrencesMap.entries()) {
+      if(key === "RiserMisc") {
+        continue;
+      }
+
       if(key === "Defs" || key === "Jake" || key === "Same") {
         this.premiumTags.push(key + " (" + value + ") ");
       }
@@ -348,7 +350,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/CFSL30gpoQg/media/?size=l",
-    "tag": "Riser"
+    "tag": "Riser RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/CFPnONkJ8YC/media/?size=l",
@@ -384,7 +386,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/CE7A1z2JA07/media/?size=l",
-    "tag": "Misc"
+    "tag": "Misc RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/CE4b-dAJbFX/media/?size=l",
@@ -448,7 +450,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/CER2QKnJv95/media/?size=l",
-    "tag": "Riser Misc"
+    "tag": "Riser Misc RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/CEPPI6FJgLk/media/?size=l",
@@ -852,7 +854,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/CAImA62p72V/media/?size=l",
-    "tag": "Misc Again"
+    "tag": "Misc Again RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/CAGBHeEHC5_/media/?size=l",
@@ -1140,7 +1142,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/B9CbXmjHQxI/media/?size=l",
-    "tag": "Riser"
+    "tag": "Riser RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/B8_3Xg5Hs3T/media/?size=l",
@@ -1220,7 +1222,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/B8O8IWfJbG_/media/?size=l",
-    "tag": "Riser"
+    "tag": "Riser RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/B8MWsh9pes3/media/?size=l",
@@ -1440,7 +1442,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/B5N0KSpAUTV/media/?size=l",
-    "tag": "Riser Misc"
+    "tag": "Riser Misc RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/B5LPRTXnxvA/media/?size=l",
@@ -1460,7 +1462,7 @@ export class ThreePicsComponent implements OnInit {
     },
     {
     "url": "https://www.instagram.com/p/B5A752hA4Q8/media/?size=l",
-    "tag": "Riser"
+    "tag": "Riser RiserMisc"
     },
     {
     "url": "https://www.instagram.com/p/B4-XOsRA_zv/media/?size=l",
