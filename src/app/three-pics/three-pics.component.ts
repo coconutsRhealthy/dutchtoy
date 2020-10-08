@@ -162,7 +162,7 @@ export class ThreePicsComponent implements OnInit {
    for (var i = 0; i < picDataToUseInMethod.length; i++) {
       var instaLinkUrl = picDataToUseInMethod[i].url.substring(0, picDataToUseInMethod[i].url.indexOf("media"));
       const src = picDataToUseInMethod[i].url;
-      const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
+      const caption = this.getCaptionForPicture(picDataToUseInMethod[i].tag);
       const thumb = picDataToUseInMethod[i].url;
       const picData = {
          src: src,
@@ -208,7 +208,7 @@ export class ThreePicsComponent implements OnInit {
             (a === "Other" && b.every(bElement => this.tagsWithOneOccurrence.includes(bElement)))) {
           var instaLinkUrl = this.allPicsData[i].url.substring(0, this.allPicsData[i].url.indexOf("media"));
           const src = this.allPicsData[i].url;
-          const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
+          const caption = this.getCaptionForPicture(picDataToUseInMethod[i].tag);
           const thumb = this.allPicsData[i].url;
           const picData = {
              src: src,
@@ -255,7 +255,7 @@ export class ThreePicsComponent implements OnInit {
            if(tagsToFilterArray[a] === c[d]) {
               var instaLinkUrl = this.allPicsData[b].url.substring(0, this.allPicsData[b].url.indexOf("media"));
               const src = this.allPicsData[b].url;
-              const caption = "<a href=" + instaLinkUrl + ">View on Instagram<a>";
+              const caption = this.getCaptionForPicture(picDataToUseInMethod[i].tag);
               const thumb = this.allPicsData[b].url;
               const picData = {
                  src: src,
@@ -278,6 +278,29 @@ export class ThreePicsComponent implements OnInit {
     }
 
     this.tagToFilter = "Twice+Benoi";
+  }
+
+  getCaptionForPicture(tags) {
+    this.getBasePartOfUrl();
+
+    var tagsForPhoto = tags.split(" ");  
+    var captionWithLinksToReturn = "";
+    var basePartOfUrl = this.getBasePartOfUrl();
+
+    for(var a = 0; a < tagsForPhoto.length; a++) {
+      if(!this.tagsWithOneOccurrence.includes(tagsForPhoto[a])) {
+        var tagToUseInLink = "#" + tagsForPhoto[a].toLowerCase();
+        captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
+      }
+    }
+
+    return captionWithLinksToReturn;
+  }
+
+  getBasePartOfUrl() {
+    var completeUrl = window.location.href;
+    var toReturn = completeUrl.split("/", 3).join("/").length + 1;
+    return completeUrl.substring(0, toReturn);
   }
 
   fillTagsDropdown() { 
