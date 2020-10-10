@@ -62,15 +62,6 @@ export class ThreePicsComponent implements OnInit {
         }
       }
 
-      if(urlTag.toLowerCase().indexOf("twice+benoi") !== -1) {
-        var twiceBenoiArray = [];
-        twiceBenoiArray.push("Twice");
-        twiceBenoiArray.push("Benoi");
-
-        this.filterPicsMultiple(twiceBenoiArray);
-        return;
-      }
-
       if(urlTag.indexOf("#") !== -1) {
         urlTag = urlTag.replace("#", "");
         var urlTagToUpperCase = urlTag.toUpperCase();
@@ -208,7 +199,7 @@ export class ThreePicsComponent implements OnInit {
             (a === "Other" && b.every(bElement => this.tagsWithOneOccurrence.includes(bElement)))) {
           var instaLinkUrl = this.allPicsData[i].url.substring(0, this.allPicsData[i].url.indexOf("media"));
           const src = this.allPicsData[i].url;
-          const caption = this.getCaptionForPicture(picDataToUseInMethod[i].tag);
+          const caption = this.getCaptionForPicture(this.allPicsData[i].tag);
           const thumb = this.allPicsData[i].url;
           const picData = {
              src: src,
@@ -255,7 +246,7 @@ export class ThreePicsComponent implements OnInit {
            if(tagsToFilterArray[a] === c[d]) {
               var instaLinkUrl = this.allPicsData[b].url.substring(0, this.allPicsData[b].url.indexOf("media"));
               const src = this.allPicsData[b].url;
-              const caption = this.getCaptionForPicture(picDataToUseInMethod[i].tag);
+              const caption = this.getCaptionForPicture(this.allPicsData[b].tag);
               const thumb = this.allPicsData[b].url;
               const picData = {
                  src: src,
@@ -290,6 +281,8 @@ export class ThreePicsComponent implements OnInit {
     for(var a = 0; a < tagsForPhoto.length; a++) {
       if(!this.tagsWithOneOccurrence.includes(tagsForPhoto[a])) {
         var tagToUseInLink = "#" + tagsForPhoto[a].toLowerCase();
+        //todo: nog een close lightbox toevoegen
+        //todo: en iets van ga naar top van pagina
         captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
       }
     }
@@ -364,6 +357,8 @@ export class ThreePicsComponent implements OnInit {
   }   
 
   manualTriggerOnScroll() { 
+    //todo: hier iets doen dat je niet heel veel gaat laden bij explore en latest
+
     this.onScroll();
 
     if(this.picsToShowInfScroll.length < this.picsToShow.length) {

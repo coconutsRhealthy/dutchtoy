@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="content">
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark mdb-color darken-3">
       <mdb-navbar-brand><a class="navbar-brand" href="#">Dutchtoy</a></mdb-navbar-brand>
       <links>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Latest'}">
-            <a (click)="showAllPics(allPicsData); setActiveNavButton('Latest'); setH1Text('Latest')"
+            <a href="#" (click)="showAllPics(allPicsData); setActiveNavButton('Latest'); setH1Text('Latest')"
                class="nav-link waves-light" mdbWavesEffect>Latest</a>
           </li>
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Explore'}">
-            <a (click)="shufflePics(); setActiveNavButton('Explore'); setH1Text('Explore');"
+            <a href="#explore" (click)="shufflePics(); setActiveNavButton('Explore'); setH1Text('Explore');"
                class="nav-link waves-light" mdbWavesEffect>Explore</a>
           </li>
           <li>
