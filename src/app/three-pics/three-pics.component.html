@@ -5,11 +5,11 @@
       <links>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Latest'}">
-            <a href="#" (click)="showAllPics(allPicsData); setActiveNavButton('Latest'); setH1Text('Latest')"
+            <a href="#" (click)="showAllPics(allPicsData);"
                class="nav-link waves-light" mdbWavesEffect>Latest</a>
           </li>
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Explore'}">
-            <a href="#explore" (click)="shufflePics(); setActiveNavButton('Explore'); setH1Text('Explore');"
+            <a href="#/explore" (click)="shufflePics();"
                class="nav-link waves-light" mdbWavesEffect>Explore</a>
           </li>
           <li>
@@ -19,13 +19,13 @@
                   Select Tag<span class="caret"></span></a>
                 <ul ngbDropdownMenu>
                   <li *ngFor="let premiumTag of premiumTags" [ngValue]="premiumTag">
-                    <a (click)="filterPics(premiumTag); setActiveNavButton('SelectTag'); setH1Text(premiumTag);"
-                       class="dropdown-item" href="#{{getCorrectUrlPostfix('Tag: ' + premiumTag)}}">{{premiumTag}}</a>
+                    <a (click)="filterPics(premiumTag);"
+                       class="dropdown-item" href="{{getUrlPostfixWhenFilteringTag()}}">{{premiumTag}}</a>
                   </li>
                   <div class="dropdown-divider"></div>
                   <li *ngFor="let tag of tags" [ngValue]="tag">
-                    <a (click)="filterPics(tag); setActiveNavButton('SelectTag'); setH1Text('Tag: ' + tag);"
-                       class="dropdown-item" href="#{{getCorrectUrlPostfix(tag)}}">{{tag}}</a>
+                    <a (click)="filterPics(tag);"
+                       class="dropdown-item" href="{{getUrlPostfixWhenFilteringTag()}}">{{tag}}</a>
                   </li>
                 </ul>
               </div>
@@ -57,12 +57,12 @@
         <div class="row">
           <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-lg-4 col-md-6 col-sm-6 col-4">
             <div class="d-none d-sm-block margin-picture-large">
-              <a href="#{{getCorrectUrlPostfix(tagToFilter)}}">
+              <a href="{{getUrlPostfixWhenClickingImage()}}">
                 <img class="centered-image fixed-height-image" [src]="image.thumb" (click)="open(i)" />
               </a>
             </div>
             <div class="d-block d-sm-none margin-picture-small">
-              <a href="#{{getCorrectUrlPostfix(tagToFilter)}}">
+              <a href="{{getUrlPostfixWhenClickingImage()}}">
                 <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" />
               </a>
             </div>

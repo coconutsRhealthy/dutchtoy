@@ -25,14 +25,13 @@ export class ThreePicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillTagsDropdown();
-    //this.processUrl();
-    this.showAllPics(this.allPicsData);
+    this.processUrl();
   }
 
   @HostListener('window:hashchange', ['$event'])
   onHashChange() {
     this.showManualLoadMoreButton = false;
-    //this.processUrl();
+    this.processUrl();
   }
 
   shufflePics() {
@@ -53,43 +52,59 @@ export class ThreePicsComponent implements OnInit {
   processUrl() {
     var url = window.location.href;
 
-    if(url.indexOf("/") !== -1) {
-      var urlTag = url.substring(url.lastIndexOf("/") + 1, url.length);
+    url = this.placeHashTagInUrlIfNecessary(url);
 
-      if(urlTag.indexOf("#") === -1) {
-        if(urlTag.slice(-1) !== "") {
-          window.location.href = window.location.href.replace(urlTag, "#" + urlTag);
-        }
+    if(url.indexOf("explore") !== -1) {
+      this.setH1Text("Explore");
+      this.setActiveNavButton("Explore");
+      this.shufflePics();
+    } else if(url.indexOf("tags/") !== -1) {
+      var tagFromUrl = this.getTagFromUrl(url);
+      var tagToFilterWith = this.getTagToFilterWith(tagFromUrl);
+
+      if(tagToFilterWith !== null) {
+        this.setH1Text("Tag: " + tagToFilterWith);
+        this.setActiveNavButton("SelectTag");
+        this.filterPics(tagToFilterWith);
+      } else {
+        window.location.href = this.getBasePartOfUrl();
+      }
+    } else {
+      this.setH1Text("Latest");
+      this.setActiveNavButton("Latest");
+      this.showAllPics(this.allPicsData);
+    }
+  }
+
+  placeHashTagInUrlIfNecessary(url) {
+    //todo: implement, zie oude processUrl methode
+    return url;
+  }
+
+  getTagFromUrl(url) {
+    var urlPartFromTagsOnward = url.substring(url.indexOf("tags/"), url.length);
+    var tag = urlPartFromTagsOnward.substring(urlPartFromTagsOnward.indexOf("/") + 1, url.length);
+    return tag;
+  }
+
+  getTagToFilterWith(tag) {
+    var tagToFilterWith = null;
+    var tagFromUrlUpperCase = tag.toUpperCase();
+
+    for (var i = 0; i < this.tags.length; i++) {
+      var currentTagInLoop = this.tags[i];
+
+      if(currentTagInLoop.indexOf(" ") !== -1) {
+        currentTagInLoop = currentTagInLoop.substring(0, currentTagInLoop.indexOf(" "));
       }
 
-      if(urlTag.indexOf("#") !== -1) {
-        urlTag = urlTag.replace("#", "");
-        var urlTagToUpperCase = urlTag.toUpperCase();
-
-        var tagIsValid = false;
-
-        for (var i = 0; i < this.tags.length; i++) {
-          var currentTagInLoop = this.tags[i].toUpperCase();
-
-          if(currentTagInLoop.indexOf(" ") !== -1) {
-            currentTagInLoop = currentTagInLoop.substring(0, currentTagInLoop.indexOf(" "));
-          }
-
-          if(urlTagToUpperCase === currentTagInLoop) {
-            this.filterPics(this.tags[i]);
-            tagIsValid = true;
-            break;
-          }
-        }
-
-        if(!tagIsValid) {
-          var currentUrl = window.location.href;
-          window.location.href = currentUrl.substring(0, currentUrl.indexOf("#"));
-        }
-
-        window.location.href = window.location.href.toLowerCase();
+      if(currentTagInLoop.toUpperCase() === tagFromUrlUpperCase) {
+        tagToFilterWith = currentTagInLoop;
+        break;
       }
     }
+
+    return tagToFilterWith;
   }
 
   setActiveNavButton(buttonClicked) {
@@ -104,12 +119,32 @@ export class ThreePicsComponent implements OnInit {
     }
   }
 
-  getCorrectUrlPostfix(tagPlusAmount) {
-    if(tagPlusAmount === null) {
-      tagPlusAmount = "/";
+  getUrlPostfixWhenFilteringTag() {
+    return "#/tags/" + this.getTagInCorrectFormatForUrl();
+  }
+
+  getUrlPostfixWhenClickingImage() {
+    var urlPostfix;
+    var completeUrl = window.location.href;
+
+    if(completeUrl.indexOf("explore") !== -1) {
+      urlPostfix = "#/explore"
+    } else if(completeUrl.indexOf("tags") !== -1) {
+      urlPostfix = "#/tags/" + this.getTagInCorrectFormatForUrl();
+    } else {
+      //must be in context 'Latest'
+      urlPostfix = "#/"
     }
 
-    var correct = tagPlusAmount.toLowerCase();
+    return urlPostfix;
+  }
+
+  getTagInCorrectFormatForUrl() {
+    if(this.tagToFilter === null) {
+      this.tagToFilter = "/";
+    }
+
+    var correct = this.tagToFilter.toLowerCase();
 
     if(correct.indexOf(" ") !== -1) {
       correct = correct.substring(0, correct.indexOf(" "));
@@ -280,10 +315,10 @@ export class ThreePicsComponent implements OnInit {
 
     for(var a = 0; a < tagsForPhoto.length; a++) {
       if(!this.tagsWithOneOccurrence.includes(tagsForPhoto[a])) {
-        var tagToUseInLink = "#" + tagsForPhoto[a].toLowerCase();
+        var tagToUseInLink = tagsForPhoto[a].toLowerCase();
         //todo: nog een close lightbox toevoegen
         //todo: en iets van ga naar top van pagina
-        captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
+        captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + "#/tags/" + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
       }
     }
 
