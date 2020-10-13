@@ -25,13 +25,14 @@ export class ThreePicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillTagsDropdown();
-    this.processUrl();
+    this.showAllPics(this.allPicsData);
+    this.processUrl(true);
   }
 
   @HostListener('window:hashchange', ['$event'])
   onHashChange() {
     this.showManualLoadMoreButton = false;
-    this.processUrl();
+    this.processUrl(false);
   }
 
   shufflePics() {
@@ -49,7 +50,7 @@ export class ThreePicsComponent implements OnInit {
     }
   }
 
-  processUrl() {
+  processUrl(onInit) {
     var url = window.location.href;
 
     url = this.placeHashTagInUrlIfNecessary(url);
@@ -59,6 +60,8 @@ export class ThreePicsComponent implements OnInit {
       this.setActiveNavButton("Explore");
       this.shufflePics();
     } else if(url.indexOf("tags/") !== -1) {
+      this.close();
+      scroll(0,0);
       var tagFromUrl = this.getTagFromUrl(url);
       var tagToFilterWith = this.getTagToFilterWith(tagFromUrl);
 
@@ -70,9 +73,19 @@ export class ThreePicsComponent implements OnInit {
         window.location.href = this.getBasePartOfUrl();
       }
     } else {
-      this.setH1Text("Latest");
-      this.setActiveNavButton("Latest");
-      this.showAllPics(this.allPicsData);
+      var urlAfterBasePart = window.location.href.replace(this.getBasePartOfUrl(), "");
+
+      if(urlAfterBasePart === "") {
+        if(!onInit) {
+          this.setH1Text("Latest");
+          this.setActiveNavButton("Latest");
+          this.showAllPics(this.allPicsData);
+        }
+      } else if(urlAfterBasePart === "#/") {
+        //nothing
+      } else {
+        window.location.href = this.getBasePartOfUrl();
+      }
     }
   }
 
@@ -316,9 +329,12 @@ export class ThreePicsComponent implements OnInit {
     for(var a = 0; a < tagsForPhoto.length; a++) {
       if(!this.tagsWithOneOccurrence.includes(tagsForPhoto[a])) {
         var tagToUseInLink = tagsForPhoto[a].toLowerCase();
-        //todo: nog een close lightbox toevoegen
-        //todo: en iets van ga naar top van pagina
-        captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + "#/tags/" + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
+
+        if(window.location.href === basePartOfUrl + "#/tags/" + tagToUseInLink) {
+          captionWithLinksToReturn = captionWithLinksToReturn + tagsForPhoto[a] + " ";
+        } else {
+          captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + "#/tags/" + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
+        }
       }
     }
 
