@@ -5,11 +5,10 @@
       <links>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Latest'}">
-            <a href="" (click)="showAllPics(allPicsData);"
-               class="nav-link waves-light" mdbWavesEffect>Latest</a>
+            <a href="" class="nav-link waves-light" mdbWavesEffect>Latest</a>
           </li>
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Explore'}">
-            <a href="#/explore" (click)="shufflePics();"
+            <a href="{{exploreHref}}" (click)="changeExploreHref();"
                class="nav-link waves-light" mdbWavesEffect>Explore</a>
           </li>
           <li>

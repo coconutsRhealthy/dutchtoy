@@ -18,6 +18,7 @@ export class ThreePicsComponent implements OnInit {
   showManualLoadMoreButton = false;
   activeNavigationButton = "Latest";
   h1Text = "Latest";
+  exploreHref = "#/explore";
 
   constructor(private _lightbox: Lightbox) {
 
@@ -33,6 +34,16 @@ export class ThreePicsComponent implements OnInit {
   onHashChange() {
     this.showManualLoadMoreButton = false;
     this.processUrl(false);
+  }
+
+  changeExploreHref() {
+    var currentUrl = window.location.href;
+
+    if(currentUrl.indexOf("explore") !== -1) {
+      this.exploreHref = "#/explore/" + Math.random().toString(36).substring(9);
+    } else {
+      this.exploreHref = "#/explore";
+    }
   }
 
   shufflePics() {
@@ -408,15 +419,30 @@ export class ThreePicsComponent implements OnInit {
   }   
 
   manualTriggerOnScroll() { 
-    //todo: hier iets doen dat je niet heel veel gaat laden bij explore en latest
+    var initialScrollXPosition = window.pageXOffset;
+    var initialScrollYPosition = window.pageYOffset;
 
-    this.onScroll();
+    var initial = this.picsToShowInfScroll.length;
+    var diffInSize = this.picsToShow.length - initial;
+    var maxLimit;
+
+    if(diffInSize < 9) {
+      maxLimit = diffInSize;
+    } else {
+      maxLimit = 9;
+    }
+
+    for(var i = initial; i < initial + maxLimit; i++) {
+      this.picsToShowInfScroll.push(this.picsToShow[i]);
+    }
 
     if(this.picsToShowInfScroll.length < this.picsToShow.length) {
       this.showManualLoadMoreButton = true;
     } else {
       this.showManualLoadMoreButton = false;
     }
+
+    scroll(initialScrollXPosition, initialScrollYPosition - 120);
   }
 
 
