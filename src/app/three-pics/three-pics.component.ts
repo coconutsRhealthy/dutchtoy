@@ -17,8 +17,10 @@ export class ThreePicsComponent implements OnInit {
   dropdownSelectedValue = "Select tag";
   showManualLoadMoreButton = false;
   activeNavigationButton = "Latest";
-  h1Text = "Latest";
+  h1Text = "My most recent pictures";
   exploreHref = "#/explore";
+
+  previousUrl = "initial";
 
   constructor(private _lightbox: Lightbox) {
 
@@ -73,7 +75,7 @@ export class ThreePicsComponent implements OnInit {
     url = this.placeHashTagInUrlIfNecessary(url);
 
     if(url.indexOf("explore") !== -1) {
-      this.setH1Text("Explore");
+      this.setH1Text("All my pictures in random order");
       this.setActiveNavButton("Explore");
       this.shufflePics();
     } else if(url.indexOf("tags/") !== -1) {
@@ -94,16 +96,22 @@ export class ThreePicsComponent implements OnInit {
 
       if(urlAfterBasePart === "") {
         if(!onInit) {
-          this.setH1Text("Latest");
+          this.setH1Text("My most recent pictures");
           this.setActiveNavButton("Latest");
           this.showAllPics(this.allPicsData);
         }
       } else if(urlAfterBasePart === "#/") {
-        //nothing
+        if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1) {
+          this.setH1Text("My most recent pictures");
+          this.setActiveNavButton("Latest");
+          this.showAllPics(this.allPicsData);
+        }
       } else {
         window.location.href = this.getBasePartOfUrl();
       }
     }
+
+    this.previousUrl = window.location.href;
   }
 
   placeHashTagInUrlIfNecessary(url) {
