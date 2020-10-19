@@ -61,6 +61,12 @@ export class ThreePicsComponent implements OnInit {
     }
   }
 
+  fixSrcUrl(index) {
+    var oldValue = this.picsToShowInfScroll[index].thumb;
+    var newValue = oldValue.replace("size=m", "size=m#");
+    this.picsToShowInfScroll[index].thumb = newValue;
+  }
+
   processUrl(onInit) {
     var url = window.location.href;
 
@@ -210,10 +216,10 @@ export class ThreePicsComponent implements OnInit {
    this.picsToShow = [];
 
    for (var i = 0; i < picDataToUseInMethod.length; i++) {
-      var instaLinkUrl = picDataToUseInMethod[i].url.substring(0, picDataToUseInMethod[i].url.indexOf("media"));
-      const src = picDataToUseInMethod[i].url;
+      var url = picDataToUseInMethod[i].url;
+      const src = url
       const caption = this.getCaptionForPicture(picDataToUseInMethod[i].tag);
-      const thumb = picDataToUseInMethod[i].url;
+      const thumb = this.getImageThumbUrl(url);
       const picData = {
          src: src,
          caption: caption,
@@ -256,10 +262,10 @@ export class ThreePicsComponent implements OnInit {
       for(var z = 0; z < b.length; z++) {
         if(a === b[z] ||
             (a === "Other" && b.every(bElement => this.tagsWithOneOccurrence.includes(bElement)))) {
-          var instaLinkUrl = this.allPicsData[i].url.substring(0, this.allPicsData[i].url.indexOf("media"));
-          const src = this.allPicsData[i].url;
+          var url = this.allPicsData[i].url;
+          const src = url;
           const caption = this.getCaptionForPicture(this.allPicsData[i].tag);
-          const thumb = this.allPicsData[i].url;
+          const thumb = this.getImageThumbUrl(url);
           const picData = {
              src: src,
              caption: caption,
@@ -303,10 +309,10 @@ export class ThreePicsComponent implements OnInit {
 
         for(var d = 0; d < c.length; d++) {
            if(tagsToFilterArray[a] === c[d]) {
-              var instaLinkUrl = this.allPicsData[b].url.substring(0, this.allPicsData[b].url.indexOf("media"));
-              const src = this.allPicsData[b].url;
+              var url = this.allPicsData[b].url;
+              const src = url;
               const caption = this.getCaptionForPicture(this.allPicsData[b].tag);
-              const thumb = this.allPicsData[b].url;
+              const thumb = this.getImageThumbUrl(url);
               const picData = {
                  src: src,
                  caption: caption,
@@ -328,6 +334,11 @@ export class ThreePicsComponent implements OnInit {
     }
 
     this.tagToFilter = "Twice+Benoi";
+  }
+
+  getImageThumbUrl(srcUrl) {
+    var imageThumbUrl = srcUrl.replace("size=l", "size=m");
+    return imageThumbUrl;
   }
 
   getCaptionForPicture(tags) {
