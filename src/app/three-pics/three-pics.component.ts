@@ -175,7 +175,11 @@ export class ThreePicsComponent implements OnInit {
     var completeUrl = window.location.href;
 
     if(completeUrl.indexOf("explore") !== -1) {
-      urlPostfix = "#/explore"
+      if(completeUrl.indexOf("#/explore/") !== -1) {
+        urlPostfix = completeUrl.substring(completeUrl.indexOf("#/explore/"), completeUrl.length);
+      } else {
+        urlPostfix = "#/explore"
+      }
     } else if(completeUrl.indexOf("tags") !== -1) {
       urlPostfix = "#/tags/" + this.getTagInCorrectFormatForUrl();
     } else {
