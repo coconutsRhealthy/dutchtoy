@@ -65,8 +65,16 @@ export class ThreePicsComponent implements OnInit {
 
   fixSrcUrl(index) {
     var oldValue = this.picsToShowInfScroll[index].thumb;
-    var newValue = oldValue.replace("size=m", "size=m#");
-    this.picsToShowInfScroll[index].thumb = newValue;
+
+    var newValue;
+
+    if(oldValue.indexOf("size=m") !== -1) {
+      newValue = oldValue.replace("size=m", "size=m#");
+      this.picsToShowInfScroll[index].thumb = newValue;
+    } else if(oldValue.indexOf("size=l") !== -1) {
+      newValue = oldValue.replace("size=l", "size=l#");
+      this.picsToShowInfScroll[index].src = newValue;
+    }
   }
 
   processUrl(onInit) {
@@ -95,11 +103,7 @@ export class ThreePicsComponent implements OnInit {
       var urlAfterBasePart = window.location.href.replace(this.getBasePartOfUrl(), "");
 
       if(urlAfterBasePart === "") {
-        if(!onInit) {
-          this.setH1Text("My most recent pictures");
-          this.setActiveNavButton("Latest");
-          this.showAllPics(this.allPicsData);
-        }
+        //nothing, this must be after onInit
       } else if(urlAfterBasePart === "#/") {
         if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1) {
           this.setH1Text("My most recent pictures");
@@ -115,8 +119,13 @@ export class ThreePicsComponent implements OnInit {
   }
 
   placeHashTagInUrlIfNecessary(url) {
-    //todo: implement, zie oude processUrl methode
-    return url;
+    var urlToReturn = url;
+
+    if(url.indexOf("#") === -1) {
+      urlToReturn = url.replace(this.getBasePartOfUrl(), this.getBasePartOfUrl() + "#/");
+    }
+
+    return urlToReturn;
   }
 
   getTagFromUrl(url) {

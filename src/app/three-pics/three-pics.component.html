@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="content">
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark mdb-color darken-3">
-      <mdb-navbar-brand><a class="navbar-brand" href="">Dutchtoy</a></mdb-navbar-brand>
+      <mdb-navbar-brand><a class="navbar-brand" href="/#/">Dutchtoy</a></mdb-navbar-brand>
       <links>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Latest'}">
-            <a href="" class="nav-link waves-light" mdbWavesEffect>Latest</a>
+            <a href="/#/" class="nav-link waves-light" mdbWavesEffect>Latest</a>
           </li>
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Explore'}">
             <a href="{{exploreHref}}" (click)="changeExploreHref();"
@@ -59,12 +59,18 @@
               <a href="{{getUrlPostfixWhenClickingImage()}}">
                 <img class="centered-image fixed-height-image" [src]="image.thumb"
                      (error)="fixSrcUrl(i)" (click)="open(i)" />
+                <div class="hidden-picture-for-preload">
+                  <img [src]="image.src" (error)="fixSrcUrl(i)" />
+                </div>
               </a>
             </div>
             <div class="d-block d-sm-none margin-picture-small">
               <a href="{{getUrlPostfixWhenClickingImage()}}">
                 <img class="centered-image fixed-height-image-xs" [src]="image.thumb"
                      (error)="fixSrcUrl(i)" (click)="open(i)" />
+                <div class="hidden-picture-for-preload">
+                  <img [src]="image.src" (error)="fixSrcUrl(i)" />
+                </div>
               </a>
             </div>
           </div>
