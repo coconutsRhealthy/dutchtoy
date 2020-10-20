@@ -256,6 +256,8 @@ export class ThreePicsComponent implements OnInit {
 
     if(this.picsToShowInfScroll.length < this.picsToShow.length) {
       this.showManualLoadMoreButton = true;
+    } else {
+      this.showManualLoadMoreButton = false;
     }
   }
 
@@ -305,6 +307,8 @@ export class ThreePicsComponent implements OnInit {
 
     if(this.picsToShowInfScroll.length < this.picsToShow.length) {
       this.showManualLoadMoreButton = true;
+    } else {
+      this.showManualLoadMoreButton = false;
     }
   }
 
@@ -352,6 +356,8 @@ export class ThreePicsComponent implements OnInit {
 
     if(this.picsToShowInfScroll.length < this.picsToShow.length) {
       this.showManualLoadMoreButton = true;
+    } else {
+      this.showManualLoadMoreButton = false;
     }
 
     this.tagToFilter = "Twice+Benoi";
