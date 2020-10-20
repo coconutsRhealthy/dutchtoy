@@ -493,6 +493,78 @@ export class ThreePicsComponent implements OnInit {
 
   allPicsData = [
     {
+    "url": "https://www.instagram.com/p/CGiA0BepjEh/media/?size=l",
+    "tag": "Farao"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGfbzjkpHc_/media/?size=l",
+    "tag": "Airko"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGc3JGnpZys/media/?size=l",
+    "tag": "Riser"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGaSTYUJrtk/media/?size=l",
+    "tag": "Same"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGXtcp5JkK7/media/?size=l",
+    "tag": "RFA"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGVKDDUJupq/media/?size=l",
+    "tag": "Jake"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGSkAO5pQp6/media/?size=l",
+    "tag": "BCSD"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGP_NS3JXu_/media/?size=l",
+    "tag": "Fofs"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGNba7yJM2m/media/?size=l",
+    "tag": "Benoi"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGK1tnzpble/media/?size=l",
+    "tag": "Ipuls"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGIQu1BplVf/media/?size=l",
+    "tag": "Farao"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGFsAL-piWT/media/?size=l",
+    "tag": "Manks"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGDHLddJx5G/media/?size=l",
+    "tag": "Misc Riser"
+    },
+    {
+    "url": "https://www.instagram.com/p/CGAiTYEJaEX/media/?size=l",
+    "tag": "Same"
+    },
+    {
+    "url": "https://www.instagram.com/p/CF-BYzdJ62X/media/?size=l",
+    "tag": "Twice Benoi"
+    },
+    {
+    "url": "https://www.instagram.com/p/CF7fD1NJ6uw/media/?size=l",
+    "tag": "Re-g"
+    },
+    {
+    "url": "https://www.instagram.com/p/CF40B9-pag_/media/?size=l",
+    "tag": "Antik"
+    },
+    {
+    "url": "https://www.instagram.com/p/CF2PY3LpvAG/media/?size=l",
+    "tag": "Farao"
+    },
+    {
     "url": "https://www.instagram.com/p/CFzqSo7p0Dm/media/?size=l",
     "tag": "Defs"
     },
