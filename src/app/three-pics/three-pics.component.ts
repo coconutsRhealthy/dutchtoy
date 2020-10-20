@@ -225,7 +225,7 @@ export class ThreePicsComponent implements OnInit {
   }
 
   open(index: number): void {
-    this._lightbox.open(this.picsToShowInfScroll, index);
+    this._lightbox.open(this.picsToShowInfScroll, index, {disableScrolling: true});
   }
 
   close(): void {
