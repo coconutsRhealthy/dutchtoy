@@ -19,8 +19,8 @@ export class ThreePicsComponent implements OnInit {
   activeNavigationButton = "Latest";
   h1Text = "My most recent pictures";
   exploreHref = "#/explore";
-
   previousUrl = "initial";
+  showAbout = false;
 
   constructor(private _lightbox: Lightbox) {
 
@@ -92,10 +92,12 @@ export class ThreePicsComponent implements OnInit {
     }
 
     if(url.indexOf("explore") !== -1) {
+      this.showAbout = false;
       this.setH1Text("All my pictures in random order");
       this.setActiveNavButton("Explore");
       this.shufflePics();
     } else if(url.indexOf("tags/") !== -1) {
+      this.showAbout = false;
       this.close();
       scroll(0,0);
       var tagFromUrl = this.getTagFromUrl(url);
@@ -108,13 +110,19 @@ export class ThreePicsComponent implements OnInit {
       } else {
         window.location.href = this.getBasePartOfUrl();
       }
+    } else if(url.indexOf("about") !== -1) {
+      this.showAbout = true;
+      this.setActiveNavButton("About");
+      this.setH1Text("About");
     } else {
+      this.showAbout = false;
       var urlAfterBasePart = window.location.href.replace(this.getBasePartOfUrl(), "");
 
       if(urlAfterBasePart === "") {
         //nothing, this must be after onInit
       } else if(urlAfterBasePart === "#/") {
-        if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1) {
+        if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1 ||
+              this.previousUrl.indexOf("about") !== -1) {
           this.setH1Text("My most recent pictures");
           this.setActiveNavButton("Latest");
           this.showAllPics(this.allPicsData);
