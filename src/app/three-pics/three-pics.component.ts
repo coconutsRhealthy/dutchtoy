@@ -84,7 +84,12 @@ export class ThreePicsComponent implements OnInit {
   processUrl(onInit) {
     var url = window.location.href;
 
-    url = this.placeHashTagInUrlIfNecessary(url);
+    if(url.indexOf("#") === -1) {
+      if(url.slice(-1) !== "/") {
+        window.location.href = url.replace(this.getBasePartOfUrl(), this.getBasePartOfUrl() + "#/tags/");
+        return;
+      }
+    }
 
     if(url.indexOf("explore") !== -1) {
       this.setH1Text("All my pictures in random order");
@@ -120,16 +125,6 @@ export class ThreePicsComponent implements OnInit {
     }
 
     this.previousUrl = window.location.href;
-  }
-
-  placeHashTagInUrlIfNecessary(url) {
-    var urlToReturn = url;
-
-    if(url.indexOf("#") === -1) {
-      urlToReturn = url.replace(this.getBasePartOfUrl(), this.getBasePartOfUrl() + "#/");
-    }
-
-    return urlToReturn;
   }
 
   getTagFromUrl(url) {
