@@ -6,6 +6,8 @@
 .footer {
   color: rgb(160,160,160);
   font-size: 13px;
+  margin-top: 17px;
+  margin-bottom: 15px;
 }
 
 .margin-picture-large {
@@ -110,4 +112,8 @@ h1 {
   height:0px;
   visibility:hidden;
   overflow:hidden
+}
+
+#showMoreButton {
+  margin-top: 20px;
 }

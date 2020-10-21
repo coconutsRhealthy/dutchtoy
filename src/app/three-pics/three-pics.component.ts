@@ -496,6 +496,10 @@ export class ThreePicsComponent implements OnInit {
 
   allPicsData = [
     {
+    "url": "https://www.instagram.com/p/CGkljXSJVZX/media/?size=l",
+    "tag": "Nuke"
+    },
+    {
     "url": "https://www.instagram.com/p/CGiA0BepjEh/media/?size=l",
     "tag": "Farao"
     },

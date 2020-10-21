@@ -97,7 +97,7 @@
       <div class="col-2"></div>
     </div>
 
-    <div class="row" [hidden]="!showManualLoadMoreButton || showAbout">
+    <div id="showMoreButton" class="row" [hidden]="!showManualLoadMoreButton || showAbout">
       <div class="col-sm-12 text-center">
         <button type="button" (click)="manualTriggerOnScroll()" class="btn btn-secondary">More...</button>
       </div>
