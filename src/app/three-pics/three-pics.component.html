@@ -4,9 +4,9 @@
       <mdb-navbar-brand><a class="navbar-brand" href="/#/">Dutchtoy graffiti</a></mdb-navbar-brand>
       <links>
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Latest'}">
+          <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Home'}">
             <a href="/#/" class="nav-link waves-light" (click)="hideNavbar(mainNavbarElementId);"
-              mdbWavesEffect>Latest</a>
+              mdbWavesEffect>Home</a>
           </li>
           <li class="nav-item" [ngClass]="{'active':activeNavigationButton === 'Explore'}">
             <a href="{{exploreHref}}" (click)="changeExploreHref(); hideNavbar(mainNavbarElementId);"
@@ -90,8 +90,8 @@
         <p>
           I photograph graffiti in the Netherlands, mainly in the areas of Amsterdam, Utrecht and Zwolle.
           Please drop me a PM on my <a href="https://instagram.com/dutchtoy">instagram</a> if you have questions,
-          requests or if you just want to have a quick chat. Suggestions on how to improve this website are also more
-          than welcome.
+          requests or if you just want to have a quick chat. Also feel free to contact me
+          if you have suggestions on how to improve this website or if you spotted a bug or so.
         </p>
       </div>
       <div class="col-2"></div>

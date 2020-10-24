@@ -16,8 +16,8 @@ export class ThreePicsComponent implements OnInit {
   premiumTags = [];
   dropdownSelectedValue = "Select tag";
   showManualLoadMoreButton = false;
-  activeNavigationButton = "Latest";
-  h1Text = "My most recent pictures";
+  activeNavigationButton = "Home";
+  h1Text = "All my graffiti pictures sorted from new to old";
   exploreHref = "#/explore";
   previousUrl = "initial";
   showAbout = false;
@@ -93,7 +93,7 @@ export class ThreePicsComponent implements OnInit {
 
     if(url.indexOf("explore") !== -1) {
       this.showAbout = false;
-      this.setH1Text("All my pictures in random order");
+      this.setH1Text("All my graffiti pictures in random order");
       this.setActiveNavButton("Explore");
       this.shufflePics();
     } else if(url.indexOf("tags/") !== -1) {
@@ -123,8 +123,8 @@ export class ThreePicsComponent implements OnInit {
       } else if(urlAfterBasePart === "#/") {
         if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1 ||
               this.previousUrl.indexOf("about") !== -1) {
-          this.setH1Text("My most recent pictures");
-          this.setActiveNavButton("Latest");
+          this.setH1Text("All my graffiti pictures sorted from new to old");
+          this.setActiveNavButton("Home");
           this.showAllPics(this.allPicsData);
         }
       } else {
@@ -190,7 +190,7 @@ export class ThreePicsComponent implements OnInit {
     } else if(completeUrl.indexOf("tags") !== -1) {
       urlPostfix = "#/tags/" + this.getTagInCorrectFormatForUrl();
     } else {
-      //must be in context 'Latest'
+      //must be in context 'Home'
       urlPostfix = "#/"
     }
 
