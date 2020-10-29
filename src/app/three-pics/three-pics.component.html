@@ -62,20 +62,12 @@
           <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-lg-4 col-md-6 col-sm-6 col-4">
             <div class="d-none d-sm-block margin-picture-large">
               <a href="{{getUrlPostfixWhenClickingImage()}}">
-                <img class="centered-image fixed-height-image" [src]="image.thumb"
-                     (error)="fixSrcUrl(i)" (click)="open(i)" />
-                <div class="hidden-picture-for-preload">
-                  <img [src]="image.src" (error)="fixSrcUrl(i)" />
-                </div>
+                <img class="centered-image fixed-height-image" [src]="image.medium" (click)="open(i)" (error)="fixMediumUrl(i)"/>
               </a>
             </div>
             <div class="d-block d-sm-none margin-picture-small">
               <a href="{{getUrlPostfixWhenClickingImage()}}">
-                <img class="centered-image fixed-height-image-xs" [src]="image.thumb"
-                     (error)="fixSrcUrl(i)" (click)="open(i)" />
-                <div class="hidden-picture-for-preload">
-                  <img [src]="image.src" (error)="fixSrcUrl(i)" />
-                </div>
+                <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" (error)="fixThumbUrl(i)"/>
               </a>
             </div>
           </div>
@@ -89,8 +81,8 @@
       <div class="alert alert-info col-8">
         <p>
           I photograph graffiti in the Netherlands, mainly in the areas of Amsterdam, Utrecht and Zwolle.
-          Please drop me a PM on my <a href="https://instagram.com/dutchtoy">instagram</a> if you have questions,
-          requests or if you just want to have a quick chat. Also feel free to contact me
+          Please drop me a PM on my <a href="https://instagram.com/dutchtoy">instagram</a> if you have any questions or
+          requests. Also feel free to contact me
           if you have suggestions on how to improve this website or if you spotted a bug or so.
         </p>
       </div>
