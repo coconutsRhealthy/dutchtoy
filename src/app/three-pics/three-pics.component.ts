@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Lightbox } from 'ngx-lightbox';
+import { EventService } from '@crystalui/angular-lightbox';
 
 @Component({
   selector: 'app-three-pics',
@@ -21,12 +21,22 @@ export class ThreePicsComponent implements OnInit {
   exploreHref = "#/explore";
   previousUrl = "initial";
   showAbout = false;
+  mobile = false;
 
-  constructor(private _lightbox: Lightbox) {
+  caption = "jahoorzz";
 
+  constructor(private eventService: EventService) {
+    const subs = this.eventService.emitter.subscribe((event) => {
+            //console.log(event);
+            //alert(event);
+        })
   }
 
   ngOnInit(): void {
+    if(window.innerWidth <= 575) {
+        this.mobile = true;
+    }
+
     this.fillTagsDropdown();
     this.showAllPics(this.allPicsData);
     this.processUrl(true);
@@ -36,6 +46,15 @@ export class ThreePicsComponent implements OnInit {
   onHashChange() {
     this.showManualLoadMoreButton = false;
     this.processUrl(false);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if(window.innerWidth <= 575) {
+       this.mobile = true;
+    } else {
+       this.mobile = false;
+    }
   }
 
   changeExploreHref() {
@@ -120,7 +139,6 @@ export class ThreePicsComponent implements OnInit {
       this.shufflePics();
     } else if(url.indexOf("tags/") !== -1) {
       this.showAbout = false;
-      this.close();
       scroll(0,0);
       var tagFromUrl = this.getTagFromUrl(url);
       var tagToFilterWith = this.getTagToFilterWith(tagFromUrl);
@@ -253,14 +271,6 @@ export class ThreePicsComponent implements OnInit {
     }
   }
 
-  open(index: number): void {
-    this._lightbox.open(this.picsToShowInfScroll, index, {disableScrolling: true, fadeDuration: 0.3, resizeDuration: 0.1});
-  }
-
-  close(): void {
-    this._lightbox.close();
-  }
-
   showAllPics(picDataToUseInMethod) {
    this.picsToShowInfScroll = [];
    this.picsToShow = [];
@@ -292,6 +302,10 @@ export class ThreePicsComponent implements OnInit {
     } else {
       this.showManualLoadMoreButton = false;
     }
+  }
+
+  fuckyeah(captionToUse) {
+    this.caption = captionToUse;
   }
 
   filterPics(tagToFilter) {

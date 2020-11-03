@@ -52,22 +52,32 @@
       </div>
     </div>
 
+    <!--<div *ngIf="!mobile" class="eije" [innerHTML]=caption>-->
+      <!--&lt;!&ndash;<a href="/#/about">{{caption}}</a>&ndash;&gt;-->
+    <!--</div>-->
+    <div *ngIf="mobile" class="eije2">
+      <a href="/#/about">{{caption}}</a>
+    </div>
+
     <div infiniteScroll
          [infiniteScrollDistance]="2"
          [infiniteScrollThrottle]="50"
          (scrolled)="onScroll()" class="row" [hidden]="showAbout">
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
-        <div class="row">
+        <div lightbox-group class="row">
           <div *ngFor="let image of picsToShowInfScroll; let i=index" class="col-lg-4 col-md-6 col-sm-6 col-4">
-            <div class="d-none d-sm-block margin-picture-large">
+            <div *ngIf="!mobile" class="d-none d-sm-block margin-picture-large">
               <a href="{{getUrlPostfixWhenClickingImage()}}">
-                <img class="centered-image fixed-height-image" [src]="image.medium" (click)="open(i)" (error)="fixMediumUrl(i)"/>
+                <img class="centered-image fixed-height-image" [src]="image.medium" lightbox [fullImage]="{path: image.src}"
+                     (error)="fixMediumUrl(i)" (click)="fuckyeah(image.caption)"/>
               </a>
+              <div class="eije" [hidden]="true">hoi</div>
             </div>
-            <div class="d-block d-sm-none margin-picture-small">
+            <div *ngIf="mobile" class="d-block d-sm-none margin-picture-small">
               <a href="{{getUrlPostfixWhenClickingImage()}}">
-                <img class="centered-image fixed-height-image-xs" [src]="image.thumb" (click)="open(i)" (error)="fixThumbUrl(i)"/>
+                <img class="centered-image fixed-height-image-xs" [src]="image.thumb" lightbox [fullImage]="{path: image.src}"
+                     (error)="fixThumbUrl(i)" (click)="fuckyeah(image.caption)"/>
               </a>
             </div>
           </div>

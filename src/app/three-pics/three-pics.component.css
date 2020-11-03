@@ -117,3 +117,17 @@ h1 {
 #showMoreButton {
   margin-top: 20px;
 }
+
+.eije {
+  position:fixed;
+  bottom: 0%;
+  color: orange;
+  z-index: 10001;
+}
+
+.eije2 {
+  position:fixed;
+  bottom: 17%;
+  color: orange;
+  z-index: 10001;
+}
