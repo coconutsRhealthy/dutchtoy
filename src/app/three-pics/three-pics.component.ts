@@ -143,16 +143,18 @@ export class ThreePicsComponent implements OnInit {
       this.shufflePics();
     } else if(url.indexOf("tags/") !== -1) {
       this.showAbout = false;
-      scroll(0,0);
       var tagFromUrl = this.getTagFromUrl(url);
       var tagToFilterWith = this.getTagToFilterWith(tagFromUrl);
 
-      if(tagToFilterWith !== null) {
-        this.setH1Text("Tag: " + tagToFilterWith);
-        this.setActiveNavButton("SelectTag");
-        this.filterPics(tagToFilterWith);
-      } else {
-        window.location.href = this.getBasePartOfUrl();
+      if(this.previousUrl.indexOf(tagFromUrl) === -1) {
+        scroll(0,0);
+        if(tagToFilterWith !== null) {
+          this.setH1Text("Tag: " + tagToFilterWith);
+          this.setActiveNavButton("SelectTag");
+          this.filterPics(tagToFilterWith);
+        } else {
+          window.location.href = this.getBasePartOfUrl();
+        }
       }
     } else if(url.indexOf("about") !== -1) {
       this.showAbout = true;
@@ -182,6 +184,11 @@ export class ThreePicsComponent implements OnInit {
   getTagFromUrl(url) {
     var urlPartFromTagsOnward = url.substring(url.indexOf("tags/"), url.length);
     var tag = urlPartFromTagsOnward.substring(urlPartFromTagsOnward.indexOf("/") + 1, url.length);
+
+    if(tag.indexOf("/") !== -1) {
+      tag = tag.substr(0, tag.indexOf("/"));
+    }
+
     return tag;
   }
 
@@ -221,7 +228,7 @@ export class ThreePicsComponent implements OnInit {
     return "#/tags/" + this.getTagInCorrectFormatForUrl();
   }
 
-  getUrlPostfixWhenClickingImage() {
+  getUrlPostfixWhenClickingImage(index) {
     var urlPostfix;
     var completeUrl = window.location.href;
 
@@ -238,9 +245,26 @@ export class ThreePicsComponent implements OnInit {
       urlPostfix = "#/"
     }
 
-    //hier moet index logica komen
+    urlPostfix = this.setCorrectImageIndexInUrl(urlPostfix, index);
 
     return urlPostfix;
+  }
+
+  setCorrectImageIndexInUrl(urlPostfix, index) {
+    var urlPostfixToReturn = urlPostfix;
+    var partAfterLastSlashOfUrlPostfix = urlPostfix.substr(urlPostfix.lastIndexOf("/") + 1, urlPostfix.length);
+
+    if(partAfterLastSlashOfUrlPostfix !== "" && !isNaN(partAfterLastSlashOfUrlPostfix)) {
+      //last part of url is number
+      urlPostfixToReturn = urlPostfix.replace(partAfterLastSlashOfUrlPostfix, "");
+    }
+
+    if(urlPostfixToReturn.slice(-1) === "/") {
+      urlPostfixToReturn = urlPostfixToReturn.substr(0, urlPostfixToReturn.length - 1);
+    }
+
+    urlPostfixToReturn = urlPostfixToReturn + "/" + index;
+    return urlPostfixToReturn;
   }
 
   getTagInCorrectFormatForUrl() {
@@ -311,57 +335,60 @@ export class ThreePicsComponent implements OnInit {
   }
 
   filterPics(tagToFilter) {
-    if(tagToFilter.indexOf(" ") !== -1) {
-      this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
-    } else {
-      this.dropdownSelectedValue = tagToFilter;
-    }
-
-    this.tagToFilter = tagToFilter;
-    this.picsToShow = [];
-    this.picsToShowInfScroll = [];
-    var counter = 0;
-
-    for (var i = 0; i < this.allPicsData.length; i++) {
-      var a = this.tagToFilter;
-
-      if(a.indexOf(" ") !== -1) {
-        a = a.substring(0, a.indexOf(" "));
+    if(this.tagToFilter === null ||
+        (tagToFilter.indexOf(this.tagToFilter) === -1) && (this.tagToFilter.indexOf(tagToFilter) === -1)) {
+      if(tagToFilter.indexOf(" ") !== -1) {
+        this.dropdownSelectedValue = tagToFilter.substring(0, tagToFilter.indexOf(" "));
+      } else {
+        this.dropdownSelectedValue = tagToFilter;
       }
 
-      var b = this.allPicsData[i].tag.split(" ");
+      this.tagToFilter = tagToFilter;
+      this.picsToShow = [];
+      this.picsToShowInfScroll = [];
+      var counter = 0;
 
-      for(var z = 0; z < b.length; z++) {
-        if(a === b[z] ||
-            (a === "Other" && b.every(bElement => this.tagsWithOneOccurrence.includes(bElement)))) {
-          var thumbUrl = this.allPicsData[i].thumb;
-          var mediumUrl = this.allPicsData[i].mediumImg;
-          var largeUrl = this.allPicsData[i].largeImg;
-          const thumb = thumbUrl;
-          const medium = mediumUrl;
-          const src = largeUrl;
-          const caption = this.getCaptionForPicture(this.allPicsData[i].tag);
-          const picData = {
-             thumb: thumb,
-             medium: medium,
-             src: src,
-             caption: caption
-          };
+      for (var i = 0; i < this.allPicsData.length; i++) {
+        var a = this.tagToFilter;
 
-          if(this.picsToShowInfScroll.length < 15) {
-            this.picsToShowInfScroll.push(picData);
+        if(a.indexOf(" ") !== -1) {
+          a = a.substring(0, a.indexOf(" "));
+        }
+
+        var b = this.allPicsData[i].tag.split(" ");
+
+        for(var z = 0; z < b.length; z++) {
+          if(a === b[z] ||
+              (a === "Other" && b.every(bElement => this.tagsWithOneOccurrence.includes(bElement)))) {
+            var thumbUrl = this.allPicsData[i].thumb;
+            var mediumUrl = this.allPicsData[i].mediumImg;
+            var largeUrl = this.allPicsData[i].largeImg;
+            const thumb = thumbUrl;
+            const medium = mediumUrl;
+            const src = largeUrl;
+            const caption = this.getCaptionForPicture(this.allPicsData[i].tag);
+            const picData = {
+               thumb: thumb,
+               medium: medium,
+               src: src,
+               caption: caption
+            };
+
+            if(this.picsToShowInfScroll.length < 15) {
+              this.picsToShowInfScroll.push(picData);
+            }
+
+            this.picsToShow.push(picData);
+            counter++;
           }
-
-          this.picsToShow.push(picData);
-          counter++;
         }
       }
-    }
 
-    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
-      this.showManualLoadMoreButton = true;
-    } else {
-      this.showManualLoadMoreButton = false;
+      if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+        this.showManualLoadMoreButton = true;
+      } else {
+        this.showManualLoadMoreButton = false;
+      }
     }
   }
 
