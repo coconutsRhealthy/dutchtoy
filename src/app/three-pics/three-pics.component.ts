@@ -55,10 +55,20 @@ export class ThreePicsComponent implements OnInit {
     var currentUrl = window.location.href;
 
     if(currentUrl.indexOf("explore") !== -1) {
-      this.exploreHref = "#/explore/" + Math.random().toString(36).substring(9);
+      this.exploreHref = "#/explore/" + this.getRandomString(3);
     } else {
       this.exploreHref = "#/explore";
     }
+  }
+
+  getRandomString(length) {
+     var result = "";
+     var characters = "abcdefghijklmnopqrstuvwxyz";
+     var charactersLength = characters.length;
+     for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+     }
+     return result;
   }
 
   //dus.. er komt url events op previous en next klikken in de lightbox, en op eerste keer pic openen
@@ -137,10 +147,15 @@ export class ThreePicsComponent implements OnInit {
     }
 
     if(url.indexOf("explore") !== -1) {
-      this.showAbout = false;
-      this.setH1Text("All my graffiti pictures in random order");
-      this.setActiveNavButton("Explore");
-      this.shufflePics();
+      if(this.previousUrl === null || this.previousUrl.indexOf("explore") === -1) {
+        this.showAbout = false;
+        this.setH1Text("All my graffiti pictures in random order");
+        this.setActiveNavButton("Explore");
+      }
+
+      if(this.reshuffleInExploreContextNecessary(url)) {
+        this.shufflePics();
+      }
     } else if(url.indexOf("tags/") !== -1) {
       this.showAbout = false;
       var tagFromUrl = this.getTagFromUrl(url);
@@ -179,6 +194,24 @@ export class ThreePicsComponent implements OnInit {
     }
 
     this.previousUrl = window.location.href;
+  }
+
+  reshuffleInExploreContextNecessary(currentUrl) {
+    var reshuffleNecessary = false;
+
+    if(this.previousUrl === null) {
+      reshuffleNecessary = true;
+    } else if(this.previousUrl.indexOf("explore") === -1) {
+      reshuffleNecessary = true;
+    } else {
+      var afterLastSlash = currentUrl.substr(currentUrl.lastIndexOf("/") + 1, currentUrl.length);
+
+      if(isNaN(afterLastSlash)) {
+        reshuffleNecessary = true;
+      }
+    }
+
+    return reshuffleNecessary;
   }
 
   getTagFromUrl(url) {
