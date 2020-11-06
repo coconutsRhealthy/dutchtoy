@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { EventService } from '@crystalui/angular-lightbox';
 
 @Component({
   selector: 'app-three-pics',
@@ -23,13 +22,8 @@ export class ThreePicsComponent implements OnInit {
   showAbout = false;
   mobile = false;
 
-  caption = "jahoorzz";
+  constructor() {
 
-  constructor(private eventService: EventService) {
-    const subs = this.eventService.emitter.subscribe((event) => {
-            //console.log(event);
-            //alert(event);
-        })
   }
 
   ngOnInit(): void {
@@ -65,6 +59,16 @@ export class ThreePicsComponent implements OnInit {
     } else {
       this.exploreHref = "#/explore";
     }
+  }
+
+  //dus.. er komt url events op previous en next klikken in de lightbox, en op eerste keer pic openen
+  //dan heb je nummertje in je url
+  //op basis daarvan bepaal je wat de caption moet zijn
+  //als je op link klikt in de caption sluit je de lightbox met testCloseLightbox();
+
+  testCloseLightbox() {
+    var element = document.querySelector(".lightbox-shown");
+    element.remove();
   }
 
   shufflePics() {
@@ -160,7 +164,7 @@ export class ThreePicsComponent implements OnInit {
 
       if(urlAfterBasePart === "") {
         //nothing, this must be after onInit
-      } else if(urlAfterBasePart === "#/") {
+      } else if(urlAfterBasePart.substr(0, 2) === "#/") {
         if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1 ||
               this.previousUrl.indexOf("about") !== -1) {
           this.setH1Text("All my graffiti pictures sorted from new to old");
@@ -234,6 +238,8 @@ export class ThreePicsComponent implements OnInit {
       urlPostfix = "#/"
     }
 
+    //hier moet index logica komen
+
     return urlPostfix;
   }
 
@@ -302,10 +308,6 @@ export class ThreePicsComponent implements OnInit {
     } else {
       this.showManualLoadMoreButton = false;
     }
-  }
-
-  fuckyeah(captionToUse) {
-    this.caption = captionToUse;
   }
 
   filterPics(tagToFilter) {
