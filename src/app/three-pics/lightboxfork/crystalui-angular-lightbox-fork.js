@@ -510,6 +510,9 @@ let LightboxComponent = class LightboxComponent extends LightboxCommonComponent 
         };
     }
     closeLightbox() {
+        //begin forked izostuff
+        window.location.href = window.location.href.substr(0, window.location.href.lastIndexOf("/") + 1);
+        //end forked izostuff
         this.setClosingState('initial');
         this.hostShown = false;
         this.closeLightboxInitial();
@@ -577,7 +580,7 @@ let LightboxComponent = class LightboxComponent extends LightboxCommonComponent 
         }
     }
 
-    //forked izostuff
+    //begin forked izostuff
     changeUrlNumber(currentUrl, positiveIncrement) {
       var incrementValue;
 
@@ -593,9 +596,12 @@ let LightboxComponent = class LightboxComponent extends LightboxCommonComponent 
 
       return urlToReturn;
     }
+    //end forked izostuff
 
     next() {
+        //begin forked izostuff
         window.location.href = this.changeUrlNumber(window.location.href, true);
+        //end forked izostuff
 
         if (this.animationMode === 'zoom-preloader') {
             this.showThumbnailImage();
@@ -619,8 +625,9 @@ let LightboxComponent = class LightboxComponent extends LightboxCommonComponent 
         }, this.preloaderTimeout);
     }
     prev() {
-        //window.location.href = window.location.href + "b";
+        //begin forked izostuff
         window.location.href = this.changeUrlNumber(window.location.href, false);
+        //end forked izostuff
 
         if (this.animationMode === 'zoom-preloader') {
             this.showThumbnailImage();

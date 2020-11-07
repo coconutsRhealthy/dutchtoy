@@ -21,6 +21,7 @@ export class ThreePicsComponent implements OnInit {
   previousUrl = "initial";
   showAbout = false;
   mobile = false;
+  lightboxCaption = "";
 
   constructor() {
 
@@ -40,6 +41,7 @@ export class ThreePicsComponent implements OnInit {
   onHashChange() {
     this.showManualLoadMoreButton = false;
     this.processUrl(false);
+    this.lightboxCaptionLogic(window.location.href);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -71,14 +73,28 @@ export class ThreePicsComponent implements OnInit {
      return result;
   }
 
+  lightboxCaptionLogic(url) {
+     var partAfterLastSlash = url.substr(url.lastIndexOf("/") + 1, url.length);
+
+     if(partAfterLastSlash !== "" && !isNaN(partAfterLastSlash)) {
+       this.lightboxCaption = this.picsToShow[partAfterLastSlash].caption;
+     } else {
+       this.lightboxCaption = "";
+     }
+  }
+
   //dus.. er komt url events op previous en next klikken in de lightbox, en op eerste keer pic openen
   //dan heb je nummertje in je url
   //op basis daarvan bepaal je wat de caption moet zijn
   //als je op link klikt in de caption sluit je de lightbox met testCloseLightbox();
 
-  testCloseLightbox() {
+  closeLightbox() {
     var element = document.querySelector(".lightbox-shown");
     element.remove();
+  }
+
+  hideCaption() {
+    this.lightboxCaption = "";
   }
 
   shufflePics() {
@@ -163,7 +179,7 @@ export class ThreePicsComponent implements OnInit {
 
       if(this.previousUrl.indexOf(tagFromUrl) === -1) {
         scroll(0,0);
-        if(tagToFilterWith !== null) {
+        if(tagToFilterWith !== null && this.tagToFilter !== tagToFilterWith) {
           this.setH1Text("Tag: " + tagToFilterWith);
           this.setActiveNavButton("SelectTag");
           this.filterPics(tagToFilterWith);
@@ -496,7 +512,7 @@ export class ThreePicsComponent implements OnInit {
       if(!this.tagsWithOneOccurrence.includes(tagsForPhoto[a])) {
         var tagToUseInLink = tagsForPhoto[a].toLowerCase();
 
-        if(window.location.href === basePartOfUrl + "#/tags/" + tagToUseInLink) {
+        if(this.tagToFilter !== null && this.tagToFilter.toLowerCase().indexOf(tagToUseInLink) !== -1) {
           captionWithLinksToReturn = captionWithLinksToReturn + tagsForPhoto[a] + " ";
         } else {
           captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + "#/tags/" + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
@@ -1314,7 +1330,7 @@ export class ThreePicsComponent implements OnInit {
     "largeImg": "https://i.ibb.co/TtTVTMg/e44555029133ec960b9d341dd906adf7.jpg",
     },
     {
-    "tag": "Sender",
+    "tag": "Sender Skee",
     "thumb": "https://i.ibb.co/qYSBmzT/e793a79187f210734e031c69664dbf0a.jpg",
     "mediumImg": "https://i.ibb.co/RTF2Q1R/e793a79187f210734e031c69664dbf0a.jpg",
     "largeImg": "https://i.ibb.co/7tfvrHs/e793a79187f210734e031c69664dbf0a.jpg",

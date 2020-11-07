@@ -118,16 +118,18 @@ h1 {
   margin-top: 20px;
 }
 
-.eije {
+.lightboxCaptionLarge {
   position:fixed;
-  bottom: 0%;
-  color: orange;
+  top: 13px;
+  color: white;
   z-index: 10001;
+  font-size: 20px;
 }
 
-.eije2 {
+.lightboxCaptionMobile {
   position:fixed;
   bottom: 17%;
-  color: orange;
+  color: white;
   z-index: 10001;
+  font-size: 20px;
 }

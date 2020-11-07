@@ -52,8 +52,8 @@
       </div>
     </div>
 
-    <div *ngIf="!mobile" class="eije">
-      <a (click)="testCloseLightbox()">eijert</a>
+    <div [ngClass]="{'lightboxCaptionMobile':mobile === true, 'lightboxCaptionLarge':mobile === false}">
+      <div (click)="closeLightbox(); hideCaption();" [innerHTML]="lightboxCaption"></div>
     </div>
 
     <div infiniteScroll
