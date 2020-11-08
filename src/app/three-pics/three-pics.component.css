@@ -128,7 +128,7 @@ h1 {
 
 .lightboxCaptionMobile {
   position:fixed;
-  bottom: 17%;
+  bottom: 15%;
   color: white;
   z-index: 10001;
   font-size: 20px;

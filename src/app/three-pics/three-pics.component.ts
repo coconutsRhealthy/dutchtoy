@@ -41,7 +41,7 @@ export class ThreePicsComponent implements OnInit {
   onHashChange() {
     this.showManualLoadMoreButton = false;
     this.processUrl(false);
-    this.lightboxCaptionLogic(window.location.href);
+    this.checkIfHashChangeInducedLightboxCloseIsNeeded(window.location.href);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -73,22 +73,44 @@ export class ThreePicsComponent implements OnInit {
      return result;
   }
 
-  lightboxCaptionLogic(url) {
-     var partAfterLastSlash = url.substr(url.lastIndexOf("/") + 1, url.length);
+  lightboxCaptionLogic(url, prevUrl) {
+    var partAfterLastSlash = url.substr(url.lastIndexOf("/") + 1, url.length);
+    var lightboxCaptionToUse;
 
-     if(partAfterLastSlash !== "" && !isNaN(partAfterLastSlash)) {
-       this.lightboxCaption = this.picsToShow[partAfterLastSlash].caption;
-     } else {
-       this.lightboxCaption = "";
-     }
+    if(partAfterLastSlash !== "" && !isNaN(partAfterLastSlash)) {
+      lightboxCaptionToUse = this.picsToShow[partAfterLastSlash].caption;
+    } else {
+      lightboxCaptionToUse = "";
+    }
+
+    var previousUrlPartAfterLastSlash = prevUrl.substr(prevUrl.lastIndexOf("/") + 1, prevUrl.length);
+
+    if(previousUrlPartAfterLastSlash === "" || isNaN(previousUrlPartAfterLastSlash)) {
+      setTimeout (() => {
+            this.lightboxCaption = lightboxCaptionToUse;
+        }, 800);
+    } else {
+      this.lightboxCaption = lightboxCaptionToUse;
+    }
   }
 
-  //dus.. er komt url events op previous en next klikken in de lightbox, en op eerste keer pic openen
-  //dan heb je nummertje in je url
-  //op basis daarvan bepaal je wat de caption moet zijn
-  //als je op link klikt in de caption sluit je de lightbox met testCloseLightbox();
+  checkIfHashChangeInducedLightboxCloseIsNeeded(url) {
+    var partAfterLastSlash = url.substr(url.lastIndexOf("/") + 1, url.length);
+
+    if(document.querySelector("crystal-lightbox") !== null) {
+      if(partAfterLastSlash === "" || isNaN(partAfterLastSlash)) {
+        this.closeLightbox();
+      }
+    }
+  }
 
   closeLightbox() {
+    var images = Array.from(document.getElementsByClassName("lightbox-single") as HTMLCollectionOf<HTMLElement>);
+
+    for(var i = 0; i < images.length; i++) {
+      images[i].style.opacity = "";
+    }
+
     var element = document.querySelector(".lightbox-shown");
     element.remove();
   }
@@ -207,6 +229,10 @@ export class ThreePicsComponent implements OnInit {
       } else {
         window.location.href = this.getBasePartOfUrl();
       }
+    }
+
+    if(!onInit && document.querySelector("crystal-lightbox") !== null) {
+      this.lightboxCaptionLogic(window.location.href, this.previousUrl);
     }
 
     this.previousUrl = window.location.href;
