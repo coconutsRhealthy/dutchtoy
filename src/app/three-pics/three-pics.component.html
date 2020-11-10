@@ -53,7 +53,7 @@
     </div>
 
     <div [ngClass]="{'lightboxCaptionMobile':mobile === true, 'lightboxCaptionLarge':mobile === false}">
-      <div (click)="closeLightbox(); hideCaption();" [innerHTML]="lightboxCaption"></div>
+      <div [innerHTML]="lightboxCaption"></div>
     </div>
 
     <div infiniteScroll

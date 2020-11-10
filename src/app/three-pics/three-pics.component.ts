@@ -54,13 +54,7 @@ export class ThreePicsComponent implements OnInit {
   }
 
   changeExploreHref() {
-    var currentUrl = window.location.href;
-
-    if(currentUrl.indexOf("explore") !== -1) {
-      this.exploreHref = "#/explore/" + this.getRandomString(3);
-    } else {
-      this.exploreHref = "#/explore";
-    }
+    this.exploreHref = "#/explore/" + this.getRandomString(3);
   }
 
   getRandomString(length) {
@@ -97,7 +91,7 @@ export class ThreePicsComponent implements OnInit {
   checkIfHashChangeInducedLightboxCloseIsNeeded(url) {
     var partAfterLastSlash = url.substr(url.lastIndexOf("/") + 1, url.length);
 
-    if(document.querySelector("crystal-lightbox") !== null) {
+    if(document.querySelector(".lightbox-shown") !== null) {
       if(partAfterLastSlash === "" || isNaN(partAfterLastSlash)) {
         this.closeLightbox();
       }
@@ -184,6 +178,16 @@ export class ThreePicsComponent implements OnInit {
       }
     }
 
+    var partAfterLastSlash = url.substr(url.lastIndexOf("/") + 1, url.length);
+
+    if(partAfterLastSlash !== "" && !isNaN(Number(partAfterLastSlash))) {
+      if(document.querySelector("crystal-lightbox") === null) {
+        //number in last part of url while lightbox is not open
+        window.location.href = url.substr(0, url.lastIndexOf("/") + 1);
+        return;
+      }
+    }
+
     if(url.indexOf("explore") !== -1) {
       if(this.previousUrl === null || this.previousUrl.indexOf("explore") === -1) {
         this.showAbout = false;
@@ -246,9 +250,10 @@ export class ThreePicsComponent implements OnInit {
     } else if(this.previousUrl.indexOf("explore") === -1) {
       reshuffleNecessary = true;
     } else {
-      var afterLastSlash = currentUrl.substr(currentUrl.lastIndexOf("/") + 1, currentUrl.length);
+      var prevUrlRandomString = this.previousUrl.slice(this.previousUrl.indexOf("explore") + 8, (this.previousUrl.indexOf("explore") + 11));
+      var currentUrlRandomString = currentUrl.slice(currentUrl.indexOf("explore") + 8, (currentUrl.indexOf("explore") + 11));
 
-      if(isNaN(afterLastSlash)) {
+      if(currentUrlRandomString !== prevUrlRandomString) {
         reshuffleNecessary = true;
       }
     }
