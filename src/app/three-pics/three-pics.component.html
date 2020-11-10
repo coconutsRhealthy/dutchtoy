@@ -59,6 +59,7 @@
     <div infiniteScroll
          [infiniteScrollDistance]="2"
          [infiniteScrollThrottle]="50"
+         [infiniteScrollDisabled]="manualScrollTriggered"
          (scrolled)="onScroll()" class="row" [hidden]="showAbout">
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
@@ -87,9 +88,8 @@
       <div class="alert alert-info col-8">
         <p>
           I photograph graffiti in the Netherlands, mainly in the areas of Amsterdam, Utrecht and Zwolle.
-          Please drop me a PM on my <a href="https://instagram.com/dutchtoy">instagram</a> if you have any questions or
-          requests. Also feel free to contact me
-          if you have suggestions on how to improve this website or if you spotted a bug or so.
+          Feel free to contact me on my <a href="https://instagram.com/dutchtoy">instagram</a> if you have any questions,
+          requests or suggestions.
         </p>
       </div>
       <div class="col-2"></div>

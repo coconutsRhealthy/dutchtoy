@@ -14,7 +14,8 @@ export class ThreePicsComponent implements OnInit {
   tags = [];   
   premiumTags = [];
   dropdownSelectedValue = "Select tag";
-  showManualLoadMoreButton = false;
+  showManualLoadMoreButton = true;
+  manualScrollTriggered = true;
   activeNavigationButton = "Home";
   h1Text = "All my graffiti pictures sorted from new to old";
   exploreHref = "#/explore";
@@ -189,7 +190,15 @@ export class ThreePicsComponent implements OnInit {
     }
 
     if(url.indexOf("explore") !== -1) {
+      if(url.endsWith("explore") || url.endsWith("explore/")) {
+        var urlToUse = window.location.href + "/" + this.getRandomString(3);
+        urlToUse = urlToUse.replace("explore//", "explore/");
+        window.location.href = urlToUse;
+        return;
+      }
+
       if(this.previousUrl === null || this.previousUrl.indexOf("explore") === -1) {
+        this.tagToFilter = null;
         this.showAbout = false;
         this.setH1Text("All my graffiti pictures in random order");
         this.setActiveNavButton("Explore");
@@ -219,10 +228,17 @@ export class ThreePicsComponent implements OnInit {
       this.setH1Text("About");
     } else {
       this.showAbout = false;
+      this.tagToFilter = null;
       var urlAfterBasePart = window.location.href.replace(this.getBasePartOfUrl(), "");
 
       if(urlAfterBasePart === "") {
-        //nothing, this must be after onInit
+        if(this.previousUrl === "initial") {
+          //nothing, this must be after onInit
+        } else {
+          this.setH1Text("All my graffiti pictures sorted from new to old");
+          this.setActiveNavButton("Home");
+          this.showAllPics(this.allPicsData);
+        }
       } else if(urlAfterBasePart.substr(0, 2) === "#/") {
         if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1 ||
               this.previousUrl.indexOf("about") !== -1) {
@@ -412,6 +428,8 @@ export class ThreePicsComponent implements OnInit {
     } else {
       this.showManualLoadMoreButton = false;
     }
+
+    this.manualScrollTriggered = false;
   }
 
   filterPics(tagToFilter) {
@@ -548,6 +566,8 @@ export class ThreePicsComponent implements OnInit {
         } else {
           captionWithLinksToReturn = captionWithLinksToReturn + "<a href=" + basePartOfUrl + "#/tags/" + tagToUseInLink + ">" + tagsForPhoto[a] + "</a> ";
         }
+      } else {
+        captionWithLinksToReturn = captionWithLinksToReturn + tagsForPhoto[a] + " ";
       }
     }
 
@@ -621,6 +641,8 @@ export class ThreePicsComponent implements OnInit {
   }   
 
   manualTriggerOnScroll() { 
+    this.manualScrollTriggered = true;
+
     var initialScrollXPosition = window.pageXOffset;
     var initialScrollYPosition = window.pageYOffset;
 
