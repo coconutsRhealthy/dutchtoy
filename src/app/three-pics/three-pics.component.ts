@@ -14,10 +14,10 @@ export class ThreePicsComponent implements OnInit {
   tags = [];   
   premiumTags = [];
   dropdownSelectedValue = "Select tag";
-  showManualLoadMoreButton = true;
+  showManualLoadMoreButton = false;
   manualScrollTriggered = true;
   activeNavigationButton = "Home";
-  h1Text = "All my graffiti pictures sorted from new to old";
+  h1Text = "";
   exploreHref = "#/explore";
   previousUrl = "initial";
   showAbout = false;
@@ -32,6 +32,15 @@ export class ThreePicsComponent implements OnInit {
     if(window.innerWidth <= 575) {
         this.mobile = true;
     }
+
+    if(window.location.href.indexOf("#") === -1) {
+      if(window.location.href.slice(-1) !== "/") {
+        window.location.href = window.location.href.replace(this.getBasePartOfUrl(), this.getBasePartOfUrl() + "#/tags/");
+        return;
+      }
+    }
+
+    this.showManualLoadMoreButton = true;
 
     this.fillTagsDropdown();
     this.showAllPics(this.allPicsData);
@@ -200,7 +209,7 @@ export class ThreePicsComponent implements OnInit {
       if(this.previousUrl === null || this.previousUrl.indexOf("explore") === -1) {
         this.tagToFilter = null;
         this.showAbout = false;
-        this.setH1Text("All my graffiti pictures in random order");
+        this.setH1Text("All my graffiti pictures - randomly shuffled");
         this.setActiveNavButton("Explore");
       }
 
@@ -230,19 +239,18 @@ export class ThreePicsComponent implements OnInit {
       this.showAbout = false;
       this.tagToFilter = null;
       var urlAfterBasePart = window.location.href.replace(this.getBasePartOfUrl(), "");
+      this.setH1Text("All my graffiti pictures - newest first");
 
       if(urlAfterBasePart === "") {
         if(this.previousUrl === "initial") {
           //nothing, this must be after onInit
         } else {
-          this.setH1Text("All my graffiti pictures sorted from new to old");
           this.setActiveNavButton("Home");
           this.showAllPics(this.allPicsData);
         }
       } else if(urlAfterBasePart.substr(0, 2) === "#/") {
         if(this.previousUrl.indexOf("explore") !== -1 || this.previousUrl.indexOf("tags") !== -1 ||
               this.previousUrl.indexOf("about") !== -1) {
-          this.setH1Text("All my graffiti pictures sorted from new to old");
           this.setActiveNavButton("Home");
           this.showAllPics(this.allPicsData);
         }
@@ -614,7 +622,7 @@ export class ThreePicsComponent implements OnInit {
     var sortedTagNumberOccurrencesMap = new Map([...tagNumberOccurrencesMap.entries()].sort());
 
     for (var [key, value] of sortedTagNumberOccurrencesMap.entries()) {
-      if(key === "Defs" || key === "Jake" || key === "Same") {
+      if(key === "Defs" || key === "Farao" || key === "Same") {
         this.premiumTags.push(key + " (" + value + ") ");
       }
 
