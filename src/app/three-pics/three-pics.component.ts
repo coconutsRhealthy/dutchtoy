@@ -682,14 +682,30 @@ export class ThreePicsComponent implements OnInit {
 
 
   allPicsData = [
-
+    {
+    "tag": "Pak",
+    "thumb": "https://i.ibb.co/fHWJh76/125110862-509731026649275-4975146864394899451-n.jpg",
+    "mediumImg": "https://i.ibb.co/rHh9CJ8/125110862-509731026649275-4975146864394899451-n.jpg",
+    "largeImg": "https://i.ibb.co/GRDmKjY/125110862-509731026649275-4975146864394899451-n.jpg",
+    },
+    {
+    "tag": "Defs Imp",
+    "thumb": "https://i.ibb.co/5v3YQJY/124462418-795284474655007-4300171205285242676-n.jpg",
+    "mediumImg": "https://i.ibb.co/2Pr8zp8/124462418-795284474655007-4300171205285242676-n.jpg",
+    "largeImg": "https://i.ibb.co/bLVH4GH/124462418-795284474655007-4300171205285242676-n.jpg",
+    },
+    {
+    "tag": "Delta",
+    "thumb": "https://i.ibb.co/5csdXvX/124040871-2677205492542463-7292761555662519851-n.jpg",
+    "mediumImg": "https://i.ibb.co/88PJn2n/124040871-2677205492542463-7292761555662519851-n.jpg",
+    "largeImg": "https://i.ibb.co/q1mzL9L/124040871-2677205492542463-7292761555662519851-n.jpg",
+    },
     {
     "tag": "Same",
     "thumb": "https://i.ibb.co/1dgdLYZ/123101740-1801606280014031-8433522186176025609-n.jpg",
     "mediumImg": "https://i.ibb.co/b202Pj1/123101740-1801606280014031-8433522186176025609-n.jpg",
     "largeImg": "https://i.ibb.co/YyCy342/123101740-1801606280014031-8433522186176025609-n.jpg",
     },
-
     {
     "tag": "Amigos",
     "thumb": "https://i.ibb.co/Tk8ssD3/122491742-2873412026220510-4416672216723335055-n.jpg",
