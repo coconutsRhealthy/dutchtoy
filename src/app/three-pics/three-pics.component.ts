@@ -489,12 +489,12 @@ export class ThreePicsComponent implements OnInit {
           }
         }
       }
+    }
 
-      if(this.picsToShowInfScroll.length < this.picsToShow.length) {
-        this.showManualLoadMoreButton = true;
-      } else {
-        this.showManualLoadMoreButton = false;
-      }
+    if(this.picsToShowInfScroll.length < this.picsToShow.length) {
+      this.showManualLoadMoreButton = true;
+    } else {
+      this.showManualLoadMoreButton = false;
     }
   }
 
