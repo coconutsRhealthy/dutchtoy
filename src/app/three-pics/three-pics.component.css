@@ -133,3 +133,7 @@ h1 {
   z-index: 10001;
   font-size: 20px;
 }
+
+#descriptive-text {
+  margin-top: 20px;
+}
