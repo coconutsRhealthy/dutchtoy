@@ -100,11 +100,11 @@
       </div>
     </div>
 
-    <div id="descriptive-text" class="row" [hidden]="showAbout">
+    <div id="descriptive-text" class="row" [hidden]="showAbout || hideDescriptiveText">
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
-        <h2>Dutch Graffiti</h2>
-        <p>
+        <span><h2>{{h2Text}}</h2></span>
+        <p [hidden]="descriptiveTextLanguage !== 'English'">
           Graffiti came to the Netherlands in the late 70's and early 80's, inspired by graffiti writers from New York.
           The Dutch graffiti scene started to grow quickly in Amsterdam, with writers such as Shoe, Joker and Delta. Later
           it spread to the rest of Holland with an active graffiti scene in for example Rotterdam, Utrecht and Zwolle. Currently
@@ -115,7 +115,7 @@
           This site contains an impression of current graffiti in the Netherlands. All photos are shot by me. I mostly photograph
           graffiti on walls and along traintracks, but also occasionally on trains and subways.
         </p>
-        <p id="nederlands">
+        <p [hidden]="descriptiveTextLanguage !== 'Dutch'">
           Graffiti is naar Nederland gekomen aan het eind van de jaren '70 en het begin van de jaren '80, onder invloed van graffiti
           schrijvers uit New York. De Nederlandse graffiti scene begon snel te groeien in Amsterdam, met schrijvers zoals Shoe, Joker
           en Delta. Later spreidde het zich uit over de rest van Nederland, met een actieve graffiti scene in plaatsen zoals Rotterdam,
@@ -126,6 +126,7 @@
           Deze site geeft een indruk van de huidige graffiti in Nederland. Alle foto's zijn gemaakt door mijzelf. Ik fotografeer
           voornamelijk graffiti op muren en naast treinsporen, maar ook af en toe op treinen en metro's.
         </p>
+        <button type="button" (click)="toggleLanguage()" class="btn btn-secondary py-0" style="font-size: 0.6em;">{{toggleLanguageButtonText}}</button>
       </div>
       <div class="col-sm-1"></div>
     </div>

@@ -18,11 +18,15 @@ export class ThreePicsComponent implements OnInit {
   manualScrollTriggered = true;
   activeNavigationButton = "Home";
   h1Text = "";
+  h2Text = "Dutch Graffiti";
   exploreHref = "#/explore";
   previousUrl = "initial";
   showAbout = false;
   mobile = false;
   lightboxCaption = "";
+  hideDescriptiveText = true;
+  toggleLanguageButtonText = "Toggle Dutch";
+  descriptiveTextLanguage = "English";
 
   constructor() {
 
@@ -263,6 +267,7 @@ export class ThreePicsComponent implements OnInit {
       this.lightboxCaptionLogic(window.location.href, this.previousUrl);
     }
 
+    this.hideDescriptiveText = false;
     this.previousUrl = window.location.href;
   }
 
@@ -675,6 +680,18 @@ export class ThreePicsComponent implements OnInit {
     }
 
     scroll(initialScrollXPosition, initialScrollYPosition - 120);
+  }
+
+  toggleLanguage() {
+    if(this.descriptiveTextLanguage === "English") {
+      this.toggleLanguageButtonText = "Toggle English";
+      this.descriptiveTextLanguage = "Dutch";
+      this.h2Text = "Graffiti in Nederland";
+    } else if(this.descriptiveTextLanguage === "Dutch") {
+      this.toggleLanguageButtonText = "Toggle Dutch";
+      this.descriptiveTextLanguage = "English";
+      this.h2Text = "Dutch Graffiti";
+    }
   }
 
 
