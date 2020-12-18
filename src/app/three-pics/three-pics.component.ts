@@ -700,6 +700,84 @@ export class ThreePicsComponent implements OnInit {
 
   allPicsData = [
     {
+    "tag": "Benoi",
+    "thumb": "https://i.ibb.co/ykHs24C/131573860-740932840179980-8251940023117638819-n.jpg",
+    "mediumImg": "https://i.ibb.co/s1837W4/131573860-740932840179980-8251940023117638819-n.jpg",
+    "largeImg": "https://i.ibb.co/fNj0JDW/131573860-740932840179980-8251940023117638819-n.jpg",
+    },
+    {
+    "tag": "Nuke",
+    "thumb": "https://i.ibb.co/Wx1nrt2/131535362-436199547550942-6326202956215658168-n.jpg",
+    "mediumImg": "https://i.ibb.co/r7JkBsw/131535362-436199547550942-6326202956215658168-n.jpg",
+    "largeImg": "https://i.ibb.co/LkfST5Z/131535362-436199547550942-6326202956215658168-n.jpg",
+    },
+    {
+    "tag": "Manks",
+    "thumb": "https://i.ibb.co/kxxBbxK/130890843-3505839209484616-290118147158705805-n.jpg",
+    "mediumImg": "https://i.ibb.co/DttWct4/130890843-3505839209484616-290118147158705805-n.jpg",
+    "largeImg": "https://i.ibb.co/jTTf0Th/130890843-3505839209484616-290118147158705805-n.jpg",
+    },
+    {
+    "tag": "Twice Sush",
+    "thumb": "https://i.ibb.co/7WjGYhr/131336007-397305618250672-8861816595280612936-n.jpg",
+    "mediumImg": "https://i.ibb.co/0MmfD5Y/131336007-397305618250672-8861816595280612936-n.jpg",
+    "largeImg": "https://i.ibb.co/T8YHvyP/131336007-397305618250672-8861816595280612936-n.jpg",
+    },
+    {
+    "tag": "Grapl",
+    "thumb": "https://i.ibb.co/jkkrg9V/130591749-114724933821661-1651106183598033557-n.jpg",
+    "mediumImg": "https://i.ibb.co/RTTDzGh/130591749-114724933821661-1651106183598033557-n.jpg",
+    "largeImg": "https://i.ibb.co/KxxrFcN/130591749-114724933821661-1651106183598033557-n.jpg",
+    },
+    {
+    "tag": "Again",
+    "thumb": "https://i.ibb.co/fXJNXmV/130750901-340354124027107-6483468761350321434-n.jpg",
+    "mediumImg": "https://i.ibb.co/GdmMdgf/130750901-340354124027107-6483468761350321434-n.jpg",
+    "largeImg": "https://i.ibb.co/VL6CLX0/130750901-340354124027107-6483468761350321434-n.jpg",
+    },
+    {
+    "tag": "Defs",
+    "thumb": "https://i.ibb.co/kBQ3jdh/130305868-380156983263496-8527271796257722698-n.jpg",
+    "mediumImg": "https://i.ibb.co/4tPszQj/130305868-380156983263496-8527271796257722698-n.jpg",
+    "largeImg": "https://i.ibb.co/KhFNd19/130305868-380156983263496-8527271796257722698-n.jpg",
+    },
+    {
+    "tag": "Fofs",
+    "thumb": "https://i.ibb.co/8zng4Py/130195772-3849945661733577-2942791716311641818-n.jpg",
+    "mediumImg": "https://i.ibb.co/CJpKsVj/130195772-3849945661733577-2942791716311641818-n.jpg",
+    "largeImg": "https://i.ibb.co/jV9kZ3C/130195772-3849945661733577-2942791716311641818-n.jpg",
+    },
+    {
+    "tag": "Same",
+    "thumb": "https://i.ibb.co/txL68wB/130326247-707024320229463-4312131311516819163-n.jpg",
+    "mediumImg": "https://i.ibb.co/2sZrg0q/130326247-707024320229463-4312131311516819163-n.jpg",
+    "largeImg": "https://i.ibb.co/mXNK6rJ/130326247-707024320229463-4312131311516819163-n.jpg",
+    },
+    {
+    "tag": "Farao",
+    "thumb": "https://i.ibb.co/HGvDBJh/129749781-207605594178170-3053024760412553764-n.jpg",
+    "mediumImg": "https://i.ibb.co/Zcs6GZ2/129749781-207605594178170-3053024760412553764-n.jpg",
+    "largeImg": "https://i.ibb.co/qmGM7ZJ/129749781-207605594178170-3053024760412553764-n.jpg",
+    },
+    {
+    "tag": "BCSD",
+    "thumb": "https://i.ibb.co/NghZW3M/129735497-382443676149066-3310772729754470297-n.jpg",
+    "mediumImg": "https://i.ibb.co/CpdhVtf/129735497-382443676149066-3310772729754470297-n.jpg",
+    "largeImg": "https://i.ibb.co/7xc2rzq/129735497-382443676149066-3310772729754470297-n.jpg",
+    },
+    {
+    "tag": "Jake",
+    "thumb": "https://i.ibb.co/G7FKDBx/129765881-419702762548191-6815046547553793606-n.jpg",
+    "mediumImg": "https://i.ibb.co/nrRHyZg/129765881-419702762548191-6815046547553793606-n.jpg",
+    "largeImg": "https://i.ibb.co/sjt04km/129765881-419702762548191-6815046547553793606-n.jpg",
+    },
+    {
+    "tag": "TopToy",
+    "thumb": "https://i.ibb.co/cbMJYRZ/129368500-140099407586007-1231662450341207398-n.jpg",
+    "mediumImg": "https://i.ibb.co/RhZ2jts/129368500-140099407586007-1231662450341207398-n.jpg",
+    "largeImg": "https://i.ibb.co/TKpcWJ7/129368500-140099407586007-1231662450341207398-n.jpg",
+    },
+    {
     "tag": "Defs",
     "thumb": "https://i.ibb.co/NKdN3p1/129767552-141710284065233-8903837859671543805-n.jpg",
     "mediumImg": "https://i.ibb.co/PgvWY4T/129767552-141710284065233-8903837859671543805-n.jpg",
