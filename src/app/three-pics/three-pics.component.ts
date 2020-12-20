@@ -213,7 +213,7 @@ export class ThreePicsComponent implements OnInit {
       if(this.previousUrl === null || this.previousUrl.indexOf("explore") === -1) {
         this.tagToFilter = null;
         this.showAbout = false;
-        this.setH1Text("All my graffiti pictures - randomly shuffled");
+        this.setH1Text("All my flicks - randomly shuffled");
         this.setActiveNavButton("Explore");
       }
 
@@ -243,7 +243,7 @@ export class ThreePicsComponent implements OnInit {
       this.showAbout = false;
       this.tagToFilter = null;
       var urlAfterBasePart = window.location.href.replace(this.getBasePartOfUrl(), "");
-      this.setH1Text("All my graffiti pictures - newest first");
+      this.setH1Text("All my flicks - newest first");
 
       if(urlAfterBasePart === "") {
         if(this.previousUrl === "initial") {
