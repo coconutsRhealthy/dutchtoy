@@ -700,6 +700,121 @@ export class ThreePicsComponent implements OnInit {
 
   allPicsData = [
     {
+    "tag": "Jake Skee",
+    "thumb": "https://i.ibb.co/m9XQCnT/135198184-428609004892554-7621780350400045410-n.jpg",
+    "mediumImg": "https://i.ibb.co/9bVR9xg/135198184-428609004892554-7621780350400045410-n.jpg",
+    "largeImg": "https://i.ibb.co/c6CzcW3/135198184-428609004892554-7621780350400045410-n.jpg",
+    },
+    {
+    "tag": "Imp",
+    "thumb": "https://i.ibb.co/BZdxGZN/134093774-500588060908134-8287158273019015682-n.jpg",
+    "mediumImg": "https://i.ibb.co/MVW4fV6/134093774-500588060908134-8287158273019015682-n.jpg",
+    "largeImg": "https://i.ibb.co/vPgGhPY/134093774-500588060908134-8287158273019015682-n.jpg",
+    },
+    {
+    "tag": "Jake",
+    "thumb": "https://i.ibb.co/Xz23vFc/134774428-1084277615319131-1937019280727224864-n.jpg",
+    "mediumImg": "https://i.ibb.co/WcxPYBm/134774428-1084277615319131-1937019280727224864-n.jpg",
+    "largeImg": "https://i.ibb.co/dQWLzk8/134774428-1084277615319131-1937019280727224864-n.jpg",
+    },
+    {
+    "tag": "Farao Skee",
+    "thumb": "https://i.ibb.co/R9LCDvZ/135634912-388800832352556-2713585840362738792-n.jpg",
+    "mediumImg": "https://i.ibb.co/jT7Lr6B/135634912-388800832352556-2713585840362738792-n.jpg",
+    "largeImg": "https://i.ibb.co/ZVyhMLt/135634912-388800832352556-2713585840362738792-n.jpg",
+    },
+    {
+    "tag": "Wise",
+    "thumb": "https://i.ibb.co/XZcZXSw/136716564-307987237283634-3479369154714256667-n.jpg",
+    "mediumImg": "https://i.ibb.co/d080BGh/136716564-307987237283634-3479369154714256667-n.jpg",
+    "largeImg": "https://i.ibb.co/jvnvhgp/136716564-307987237283634-3479369154714256667-n.jpg",
+    },
+    {
+    "tag": "Mickey",
+    "thumb": "https://i.ibb.co/T1N6Yn2/131893235-1144814702647293-1328534523969289801-n.jpg",
+    "mediumImg": "https://i.ibb.co/KD8dbQh/131893235-1144814702647293-1328534523969289801-n.jpg",
+    "largeImg": "https://i.ibb.co/HC96BM4/131893235-1144814702647293-1328534523969289801-n.jpg",
+    },
+    {
+    "tag": "Imp Defs",
+    "thumb": "https://i.ibb.co/ykLDwWV/131887782-204542027938682-7809867061788138466-n.jpg",
+    "mediumImg": "https://i.ibb.co/FYG9Sgn/131887782-204542027938682-7809867061788138466-n.jpg",
+    "largeImg": "https://i.ibb.co/7p7Hw2b/131887782-204542027938682-7809867061788138466-n.jpg",
+    },
+    {
+    "tag": "Serch",
+    "thumb": "https://i.ibb.co/whNqt5Y/131320764-2781224852190819-279389034717210341-n.jpg",
+    "mediumImg": "https://i.ibb.co/LdzyKVv/131320764-2781224852190819-279389034717210341-n.jpg",
+    "largeImg": "https://i.ibb.co/v4xW90D/131320764-2781224852190819-279389034717210341-n.jpg",
+    },
+    {
+    "tag": "Fofs",
+    "thumb": "https://i.ibb.co/34ng28w/132027228-228565742125003-2543070893351866922-n.jpg",
+    "mediumImg": "https://i.ibb.co/k5tNjrp/132027228-228565742125003-2543070893351866922-n.jpg",
+    "largeImg": "https://i.ibb.co/VJsfRhd/132027228-228565742125003-2543070893351866922-n.jpg",
+    },
+    {
+    "tag": "Zedz",
+    "thumb": "https://i.ibb.co/9pWJNXn/130926478-2753227468277973-5587038119376501085-n.jpg",
+    "mediumImg": "https://i.ibb.co/dfDSr9B/130926478-2753227468277973-5587038119376501085-n.jpg",
+    "largeImg": "https://i.ibb.co/sgqh2Sj/130926478-2753227468277973-5587038119376501085-n.jpg",
+    },
+
+    {
+    "tag": "Benoi",
+    "thumb": "https://i.ibb.co/9T2QxNJ/132388915-385434969421715-8553922902022743557-n.jpg",
+    "mediumImg": "https://i.ibb.co/C7vRjzq/132388915-385434969421715-8553922902022743557-n.jpg",
+    "largeImg": "https://i.ibb.co/8521y0J/132388915-385434969421715-8553922902022743557-n.jpg",
+    },
+    {
+    "tag": "MerryXmas",
+    "thumb": "https://i.ibb.co/18zdJMN/132205609-117087256926255-926453293373727746-n.jpg",
+    "mediumImg": "https://i.ibb.co/SRfd7cg/132205609-117087256926255-926453293373727746-n.jpg",
+    "largeImg": "https://i.ibb.co/0hsFVKL/132205609-117087256926255-926453293373727746-n.jpg",
+    },
+    {
+    "tag": "Same",
+    "thumb": "https://i.ibb.co/PTSQqv7/132589382-728083271439062-7027316353889290010-n.jpg",
+    "mediumImg": "https://i.ibb.co/SQLrF4h/132589382-728083271439062-7027316353889290010-n.jpg",
+    "largeImg": "https://i.ibb.co/f8cvjzh/132589382-728083271439062-7027316353889290010-n.jpg",
+    },
+    {
+    "tag": "Antik",
+    "thumb": "https://i.ibb.co/r0hMsp7/132972368-231555828343860-5421876542483023360-n.jpg",
+    "mediumImg": "https://i.ibb.co/xLbGHgC/132972368-231555828343860-5421876542483023360-n.jpg",
+    "largeImg": "https://i.ibb.co/zxgbJ2n/132972368-231555828343860-5421876542483023360-n.jpg",
+    },
+    {
+    "tag": "Manks",
+    "thumb": "https://i.ibb.co/C1BCCp1/132701115-407337350684768-96545983275745770-n.jpg",
+    "mediumImg": "https://i.ibb.co/K0644c0/132701115-407337350684768-96545983275745770-n.jpg",
+    "largeImg": "https://i.ibb.co/smjxxpm/132701115-407337350684768-96545983275745770-n.jpg",
+    },
+    {
+    "tag": "Riser Misc",
+    "thumb": "https://i.ibb.co/DgpVTfS/132943089-405385967186906-1744306786265836659-n.jpg",
+    "mediumImg": "https://i.ibb.co/pry05j9/132943089-405385967186906-1744306786265836659-n.jpg",
+    "largeImg": "https://i.ibb.co/7N4YLt6/132943089-405385967186906-1744306786265836659-n.jpg",
+    },
+    {
+    "tag": "Carlos",
+    "thumb": "https://i.ibb.co/nPXMv1f/133710828-1126234547807853-6550907766131492842-n.jpg",
+    "mediumImg": "https://i.ibb.co/y4zF1k5/133710828-1126234547807853-6550907766131492842-n.jpg",
+    "largeImg": "https://i.ibb.co/HhcTsPY/133710828-1126234547807853-6550907766131492842-n.jpg",
+    },
+    {
+    "tag": "Set",
+    "thumb": "https://i.ibb.co/1891jTk/133951534-103277041639602-7797408439078774179-n.jpg",
+    "mediumImg": "https://i.ibb.co/KF9dSWJ/133951534-103277041639602-7797408439078774179-n.jpg",
+    "largeImg": "https://i.ibb.co/9sq6SW7/133951534-103277041639602-7797408439078774179-n.jpg",
+    },
+    {
+    "tag": "Defs Ipuls",
+    "thumb": "https://i.ibb.co/PWRDv3v/134140731-889341598486902-814417411369087418-n.jpg",
+    "mediumImg": "https://i.ibb.co/n1TPNZN/134140731-889341598486902-814417411369087418-n.jpg",
+    "largeImg": "https://i.ibb.co/NNXTdQd/134140731-889341598486902-814417411369087418-n.jpg",
+    },
+    {
     "tag": "Benoi",
     "thumb": "https://i.ibb.co/ykHs24C/131573860-740932840179980-8251940023117638819-n.jpg",
     "mediumImg": "https://i.ibb.co/s1837W4/131573860-740932840179980-8251940023117638819-n.jpg",
