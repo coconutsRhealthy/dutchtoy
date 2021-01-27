@@ -238,7 +238,7 @@ export class ThreePicsComponent implements OnInit {
     } else if(url.indexOf("about") !== -1) {
       this.showAbout = true;
       this.setActiveNavButton("About");
-      this.setH1Text("About");
+      this.setH1Text("Contact");
     } else {
       this.showAbout = false;
       this.tagToFilter = null;
@@ -699,6 +699,132 @@ export class ThreePicsComponent implements OnInit {
 
 
   allPicsData = [
+    {
+    "tag": "Farao",
+    "thumb": "https://i.ibb.co/1RSZbxy/142830782-807499713134439-358935609433376149-n.jpg",
+    "mediumImg": "https://i.ibb.co/F8P6ntZ/142830782-807499713134439-358935609433376149-n.jpg",
+    "largeImg": "https://i.ibb.co/p4m2npV/142830782-807499713134439-358935609433376149-n.jpg",
+    },
+    {
+    "tag": "Defs",
+    "thumb": "https://i.ibb.co/VByRhc2/142230235-1773305936167746-7891779527461068597-n.jpg",
+    "mediumImg": "https://i.ibb.co/XJB1drS/142230235-1773305936167746-7891779527461068597-n.jpg",
+    "largeImg": "https://i.ibb.co/7ycPTd2/142230235-1773305936167746-7891779527461068597-n.jpg",
+    },
+    {
+    "tag": "Stu",
+    "thumb": "https://i.ibb.co/JxrxjbK/142190973-206644244524010-9005682959965132262-n.jpg",
+    "mediumImg": "https://i.ibb.co/4s4sRD7/142190973-206644244524010-9005682959965132262-n.jpg",
+    "largeImg": "https://i.ibb.co/gvtvZX3/142190973-206644244524010-9005682959965132262-n.jpg",
+    },
+    {
+    "tag": "Same",
+    "thumb": "https://i.ibb.co/r5yW8qW/141131736-454578065722976-4616576814275637468-n.jpg",
+    "mediumImg": "https://i.ibb.co/zPfk9Ck/141131736-454578065722976-4616576814275637468-n.jpg",
+    "largeImg": "https://i.ibb.co/MPNXwKX/141131736-454578065722976-4616576814275637468-n.jpg",
+    },
+    {
+    "tag": "Fofs",
+    "thumb": "https://i.ibb.co/HqbVzn1/140478949-199091348574783-665553192839163007-n.jpg",
+    "mediumImg": "https://i.ibb.co/rHzm64T/140478949-199091348574783-665553192839163007-n.jpg",
+    "largeImg": "https://i.ibb.co/BBQtZqd/140478949-199091348574783-665553192839163007-n.jpg",
+    },
+    {
+    "tag": "Again",
+    "thumb": "https://i.ibb.co/MSgTc4n/140930925-184783683394301-2759855952727011327-n.jpg",
+    "mediumImg": "https://i.ibb.co/C8wdbZB/140930925-184783683394301-2759855952727011327-n.jpg",
+    "largeImg": "https://i.ibb.co/g9r1Spy/140930925-184783683394301-2759855952727011327-n.jpg",
+    },
+    {
+    "tag": "Jake",
+    "thumb": "https://i.ibb.co/chk7SPk/139796000-434290214591003-3804851263362825788-n.jpg",
+    "mediumImg": "https://i.ibb.co/yFdbcDd/139796000-434290214591003-3804851263362825788-n.jpg",
+    "largeImg": "https://i.ibb.co/F4mjL9m/139796000-434290214591003-3804851263362825788-n.jpg",
+    },
+    {
+    "tag": "Gear",
+    "thumb": "https://i.ibb.co/C0FG8XC/139972891-225077302580767-6025482858190423791-n.jpg",
+    "mediumImg": "https://i.ibb.co/9Yj5gfK/139972891-225077302580767-6025482858190423791-n.jpg",
+    "largeImg": "https://i.ibb.co/2KB4hLV/139972891-225077302580767-6025482858190423791-n.jpg",
+    },
+    {
+    "tag": "Imp",
+    "thumb": "https://i.ibb.co/jfDLx4G/139959242-704008277143088-7567882161737774646-n.jpg",
+    "mediumImg": "https://i.ibb.co/W5fcdKF/139959242-704008277143088-7567882161737774646-n.jpg",
+    "largeImg": "https://i.ibb.co/DWQ76Kk/139959242-704008277143088-7567882161737774646-n.jpg",
+    },
+    {
+    "tag": "Farao Skee Sender",
+    "thumb": "https://i.ibb.co/YfN9KPd/139736381-166545598188992-2206271610811234022-n.jpg",
+    "mediumImg": "https://i.ibb.co/NWFhktN/139736381-166545598188992-2206271610811234022-n.jpg",
+    "largeImg": "https://i.ibb.co/xz2vcXg/139736381-166545598188992-2206271610811234022-n.jpg",
+    },
+    {
+    "tag": "Set",
+    "thumb": "https://i.ibb.co/x7F8RCd/139593767-446592279716961-5906466346439693289-n.jpg",
+    "mediumImg": "https://i.ibb.co/wzcrx0j/139593767-446592279716961-5906466346439693289-n.jpg",
+    "largeImg": "https://i.ibb.co/Js3FMBg/139593767-446592279716961-5906466346439693289-n.jpg",
+    },
+    {
+    "tag": "Manks",
+    "thumb": "https://i.ibb.co/9g4x1ZX/138956058-919117638895475-3063719476806444901-n.jpg",
+    "mediumImg": "https://i.ibb.co/W5zrMV9/138956058-919117638895475-3063719476806444901-n.jpg",
+    "largeImg": "https://i.ibb.co/8sxyfY3/138956058-919117638895475-3063719476806444901-n.jpg",
+    },
+    {
+    "tag": "Azhq",
+    "thumb": "https://i.ibb.co/xgxc9wx/138546255-676743186354840-7277856615481731806-n.jpg",
+    "mediumImg": "https://i.ibb.co/6tjp9Gj/138546255-676743186354840-7277856615481731806-n.jpg",
+    "largeImg": "https://i.ibb.co/B607Wv0/138546255-676743186354840-7277856615481731806-n.jpg",
+    },
+    {
+    "tag": "Antik",
+    "thumb": "https://i.ibb.co/yVBvzj6/137663536-587967072073483-5565508775937820566-n.jpg",
+    "mediumImg": "https://i.ibb.co/V3pnF4g/137663536-587967072073483-5565508775937820566-n.jpg",
+    "largeImg": "https://i.ibb.co/stJxTYK/137663536-587967072073483-5565508775937820566-n.jpg",
+    },
+    {
+    "tag": "Ipuls",
+    "thumb": "https://i.ibb.co/YdPJSLf/137267198-3727388593966486-1316688051501962059-n.jpg",
+    "mediumImg": "https://i.ibb.co/NNtfqyW/137267198-3727388593966486-1316688051501962059-n.jpg",
+    "largeImg": "https://i.ibb.co/2MWRrkc/137267198-3727388593966486-1316688051501962059-n.jpg",
+    },
+    {
+    "tag": "Benoi",
+    "thumb": "https://i.ibb.co/jhKJLP6/136996584-163641745161846-6110313847894275038-n.jpg",
+    "mediumImg": "https://i.ibb.co/31XR09r/136996584-163641745161846-6110313847894275038-n.jpg",
+    "largeImg": "https://i.ibb.co/R2njCkv/136996584-163641745161846-6110313847894275038-n.jpg",
+    },
+    {
+    "tag": "Same",
+    "thumb": "https://i.ibb.co/5ktYY15/136712678-240571407585989-227917977078131732-n.jpg",
+    "mediumImg": "https://i.ibb.co/cwMbbyN/136712678-240571407585989-227917977078131732-n.jpg",
+    "largeImg": "https://i.ibb.co/r3TbbQZ/136712678-240571407585989-227917977078131732-n.jpg",
+    },
+    {
+    "tag": "Sender",
+    "thumb": "https://i.ibb.co/XZJWJ6P/136646381-4232792830069320-2307457689856390729-n.jpg",
+    "mediumImg": "https://i.ibb.co/wN6d68q/136646381-4232792830069320-2307457689856390729-n.jpg",
+    "largeImg": "https://i.ibb.co/zhfmfCg/136646381-4232792830069320-2307457689856390729-n.jpg",
+    },
+    {
+    "tag": "Riser",
+    "thumb": "https://i.ibb.co/S6TgdTn/135944743-4022757651091302-7336583595536324942-n.jpg",
+    "mediumImg": "https://i.ibb.co/RgnKBn0/135944743-4022757651091302-7336583595536324942-n.jpg",
+    "largeImg": "https://i.ibb.co/GdwDtw2/135944743-4022757651091302-7336583595536324942-n.jpg",
+    },
+    {
+    "tag": "Unknown7",
+    "thumb": "https://i.ibb.co/YpsFk5K/135759405-519527202287656-7837303734827444343-n.jpg",
+    "mediumImg": "https://i.ibb.co/D52HCB6/135759405-519527202287656-7837303734827444343-n.jpg",
+    "largeImg": "https://i.ibb.co/cDnSFWp/135759405-519527202287656-7837303734827444343-n.jpg",
+    },
+    {
+    "tag": "Melo Wish",
+    "thumb": "https://i.ibb.co/CJ9MKtX/135570729-158723702368568-8746452655291205647-n.jpg",
+    "mediumImg": "https://i.ibb.co/n31nM0V/135570729-158723702368568-8746452655291205647-n.jpg",
+    "largeImg": "https://i.ibb.co/LQgJdPq/135570729-158723702368568-8746452655291205647-n.jpg",
+    },
     {
     "tag": "Jake Skee",
     "thumb": "https://i.ibb.co/m9XQCnT/135198184-428609004892554-7621780350400045410-n.jpg",
